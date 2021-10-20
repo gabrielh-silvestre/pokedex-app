@@ -1,0 +1,40 @@
+h4 {
+  font-weight: normal;
+}
+
+p {
+  color: #777777;
+  font-size: 12px;
+}
+
+.pokemon-container-card {
+  border-radius: 0 0 5px 5px;
+  margin: auto;
+  margin-bottom: 1rem;
+  width: 80%;
+}
+
+.pokemon-container-img {
+  align-items: center;
+  background-color: #f2f2f2;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.pokemon-container-info {
+  /* border: 1px solid red; */
+  padding: 5px 2rem 3rem;
+}
+
+.pokemon-name {
+  margin-top: 1rem;
+}
+
+.pokemon-types {
+  margin-top: 0.5rem;
+}
+
+img {
+  width: 150px;
+}
