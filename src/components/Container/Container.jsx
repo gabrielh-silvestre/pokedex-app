@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PokeCard from '../PokemonCard';
+import PokeCard from '../PokemonCard/PokemonCard';
 
 export default class Container extends Component {
   constructor(props) {
