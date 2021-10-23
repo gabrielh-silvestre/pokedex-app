@@ -1,0 +1,46 @@
+a {
+  color: #f0f0f0;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 80%;
+}
+
+header {
+  background-color: #E3340E;
+  margin-bottom: 2rem;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+h1 {
+  color: #f0f0f0;
+  font-size: 1.7rem;
+}
+
+.header-menu {
+  background-color: #E3340E;
+  border-radius: 0 0 0 6px;
+  padding: 0 15px;
+  position: absolute;
+  right: 0px;
+  top: 70px;
+}
+
+.header-title {
+  align-items: center;
+  display: flex;
+}
+
+li {
+  list-style: none;
+  padding: 12px 0;
+  text-align: right;
+}
