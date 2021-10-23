@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import './pokeCard.css';
 
 export default class PokeCard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.renderTypes = this.renderTypes.bind(this);
+  }
+
+  renderTypes(typesArr) {
+    return typesArr.map(({ type }) => <span className={`pokemon-type ${type.name}`} key={type.name}>{type.name}</span>);
+  }
+
   render() {
     return (
       <div className="pokemon-container-card">
@@ -17,7 +27,9 @@ export default class PokeCard extends Component {
           <div className="pokemon-name">
             <h4>{this.props.pokemonName}</h4>
           </div>
-          <div className="pokemon-types">{}</div>
+          <div className="pokemon-types-container">
+            {this.renderTypes(this.props.pokemonTypes)}
+          </div>
         </div>
       </div>
     );
