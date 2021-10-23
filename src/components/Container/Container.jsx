@@ -16,6 +16,8 @@ export default class Container extends Component {
     this.getMultPokes = this.getMultPokes.bind(this);
     this.increasePokemons = this.increasePokemons.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.renderPokemons = this.renderPokemons.bind(this);
+    this.setAllPokemons = this.setAllPokemons.bind(this);
   }
 
   cardConstructor({ id, name, sprites, types }) {
@@ -43,38 +45,51 @@ export default class Container extends Component {
     return tempArr;
   }
 
-  componentDidMount = () => {
+  setAllPokemons() {
     Promise.all(this.getMultPokes()).then((data) =>
       this.setState({ allPokemons: data })
     );
+  }
+
+  renderPokemons() {
+    return this.state.allPokemons.map((item) => {
+      return (
+        <PokeCard
+          key={item.name}
+          pokemonName={item.name}
+          pokemonId={item.id}
+          pokemonSprite={item.sprite}
+          pokemonTypes={item.types}
+        />
+      );
+    });
+  }
+
+  componentDidMount = () => {
+    this.setAllPokemons();
+  };
+
+  componentDidUpdate = (_prevProps, prevState, _snapshot) => {
+    if (this.state.manyPokes !== prevState.manyPokes) {
+      this.setAllPokemons();
+      this.renderPokemons();
+    }
   };
 
   increasePokemons() {
     this.setState((prev, _props) => ({
-      manyPokes: prev.manyPokes + 24
+      manyPokes: prev.manyPokes + 24,
     }));
   }
 
   handleClick() {
     this.increasePokemons();
-    this.componentDidMount();
   }
 
   render() {
-    const { allPokemons } = this.state;
     return (
       <div>
-        {allPokemons.map((item) => {
-          return (
-            <PokeCard
-              key={item.name}
-              pokemonName={item.name}
-              pokemonId={item.id}
-              pokemonSprite={item.sprite}
-              pokemonTypes={item.types}
-            />
-          );
-        })}
+        {this.renderPokemons()}
         <Button btnContent="Carregar mais" callback={this.handleClick} />
       </div>
     );
