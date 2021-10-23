@@ -3,10 +3,10 @@ import './button.css';
 
 export default class Button extends Component {
   render() {
-    const { increasePokemons } = this.props;
+    const { callback } = this.props;
     return (
       <div className="btn-container">
-        <button onClick={increasePokemons}>{this.props.btnContent}</button>
+        <button onClick={callback}>{this.props.btnContent}</button>
       </div>
     );
   }
