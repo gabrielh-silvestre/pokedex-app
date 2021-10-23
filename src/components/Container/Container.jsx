@@ -8,7 +8,7 @@ export default class Container extends Component {
 
     this.state = {
       allPokemons: [],
-      manyPokes: 3,
+      manyPokes: 24,
     };
 
     this.cardConstructor = this.cardConstructor.bind(this);
