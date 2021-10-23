@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokeCard from '../PokemonCard/PokemonCard';
+import Button from '../Button/Button';
 
 export default class Container extends Component {
   constructor(props) {
@@ -7,12 +8,13 @@ export default class Container extends Component {
 
     this.state = {
       allPokemons: [],
-      manyPokes: 24,
+      manyPokes: 3,
     };
 
     this.cardConstructor = this.cardConstructor.bind(this);
     this.getPokemonById = this.getPokemonById.bind(this);
     this.getMultPokes = this.getMultPokes.bind(this);
+    this.increasePokemons = this.increasePokemons.bind(this);
   }
 
   cardConstructor({ id, name, sprites, types }) {
@@ -46,6 +48,13 @@ export default class Container extends Component {
     );
   };
 
+  increasePokemons() {
+    this.setState((prev, _props) => ({
+      manyPokes: prev.manyPokes + 24
+    }));
+    this.componentDidMount();
+  }
+
   render() {
     const { allPokemons } = this.state;
     return (
@@ -61,6 +70,7 @@ export default class Container extends Component {
             />
           );
         })}
+        <Button btnContent="Carregar mais" increasePokemons={this.increasePokemons} />
       </div>
     );
   }
