@@ -23,7 +23,6 @@ p {
 }
 
 .pokemon-container-info {
-  /* border: 1px solid red; */
   padding: 5px 2rem 3rem;
 }
 
@@ -31,10 +30,88 @@ p {
   margin-top: 1rem;
 }
 
-.pokemon-types {
-  margin-top: 0.5rem;
+.pokemon-type {
+  background-color: yellowgreen;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 1px 15px;
+  margin-right: 1rem;
+}
+
+.pokemon-types-container {
+  margin-top: 1rem;
 }
 
 img {
   width: 150px;
+}
+
+/* Types bgc ref: https://github.com/ProHatp/Pokedex */
+
+.grass {
+  background: linear-gradient(rgba(38, 251, 0, 0.726), rgba(15, 90, 31, 0.356)) !important;
+}
+
+.water {
+  background: linear-gradient(rgba(0, 138, 251, 0.726), rgba(21, 48, 110, 0.356)) !important;
+}
+
+.fire {
+  background: linear-gradient(rgba(255, 0, 0, 0.726), rgba(255, 159, 5, 0.356)) !important;
+}
+
+.bug {
+  background: linear-gradient(rgba(21, 255, 0, 0.726), rgba(5, 255, 255, 0.356));
+}
+
+.normal {
+  background: linear-gradient(rgba(42, 44, 42, 0.726), rgba(72, 67, 73, 0.356));
+}
+
+.poison {
+  background: linear-gradient(rgba(163, 24, 105, 0.726), rgba(164, 10, 195, 0.356));
+}
+
+.electric {
+  background: linear-gradient(rgba(157, 160, 10, 0.726), rgba(199, 243, 4, 0.356)) !important;
+}
+
+.ground {
+  background: linear-gradient(rgba(19, 83, 19, 0.726), rgba(6, 117, 75, 0.356));
+}
+
+.fairy {
+  background: linear-gradient(rgba(255, 0, 212, 0.726), rgba(250, 9, 170, 0.356));
+}
+
+.psychic {
+  background: linear-gradient(rgba(185, 75, 117, 0.726), rgba(158, 104, 140, 0.356));
+}
+
+.fighting {
+  background: linear-gradient(rgba(41, 41, 41, 0.726), rgba(16, 13, 17, 0.356));
+}
+
+.dragon {
+  background: linear-gradient(rgba(0, 195, 255, 0.726), rgba(3, 93, 116, 0.356));
+}
+
+.rock {
+  background: linear-gradient(rgba(92, 34, 0, 0.726), rgba(240, 56, 0, 0.356));
+}
+
+.dark {
+  background: linear-gradient(rgba(0, 0, 0, 0.726), rgba(13, 9, 14, 0.356));
+}
+
+.ice {
+  background: linear-gradient(rgba(1, 174, 255, 0.726), rgba(0, 162, 255, 0.356));
+}
+
+.steel {
+  background: linear-gradient(rgba(146, 119, 155, 0.726), rgba(135, 103, 141, 0.356));
+}
+
+.ghost {
+  background: linear-gradient(rgba(121, 6, 92, 0.726), rgba(72, 67, 73, 0.356));
 }
