@@ -15,6 +15,7 @@ export default class Container extends Component {
     this.getPokemonById = this.getPokemonById.bind(this);
     this.getMultPokes = this.getMultPokes.bind(this);
     this.increasePokemons = this.increasePokemons.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   cardConstructor({ id, name, sprites, types }) {
@@ -52,6 +53,10 @@ export default class Container extends Component {
     this.setState((prev, _props) => ({
       manyPokes: prev.manyPokes + 24
     }));
+  }
+
+  handleClick() {
+    this.increasePokemons();
     this.componentDidMount();
   }
 
@@ -70,7 +75,7 @@ export default class Container extends Component {
             />
           );
         })}
-        <Button btnContent="Carregar mais" increasePokemons={this.increasePokemons} />
+        <Button btnContent="Carregar mais" callback={this.handleClick} />
       </div>
     );
   }
