@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './pokeCard.css';
 
@@ -18,21 +19,23 @@ export default class PokeCard extends Component {
 
     return (
       <div className="pokemon-container-card">
-        <div className="pokemon-container-img">
-          <img src={pokemonSprite} alt="pokemon" />
-        </div>
+        <Link to={`/pokemon/${this.props.pokemonName}`}>
+          <div className="pokemon-container-img">
+            <img src={pokemonSprite} alt="pokemon" />
+          </div>
 
-        <div className="pokemon-container-info">
-          <div className="pokemon-id">
-            <p>Nº {pokemonId}</p>
+          <div className="pokemon-container-info">
+            <div className="pokemon-id">
+              <p>Nº {pokemonId}</p>
+            </div>
+            <div className="pokemon-name">
+              <h4>{pokemonName}</h4>
+            </div>
+            <div className="pokemon-types-container">
+              {this.renderTypes(pokemonTypes)}
+            </div>
           </div>
-          <div className="pokemon-name">
-            <h4>{pokemonName}</h4>
-          </div>
-          <div className="pokemon-types-container">
-            {this.renderTypes(pokemonTypes)}
-          </div>
-        </div>
+        </Link>
       </div>
     );
   }
