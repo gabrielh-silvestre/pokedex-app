@@ -94,11 +94,9 @@ export default class PokePageContainer extends Component {
             />
           </div>
 
-          <PokemonForces
-            types={types}
-            force={force}
-            weakness={weakness}
-          />
+          <div>
+            <PokemonForces types={types} force={force} weakness={weakness} />
+          </div>
         </div>
       </article>
     );
