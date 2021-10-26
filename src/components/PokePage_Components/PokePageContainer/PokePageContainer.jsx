@@ -3,7 +3,7 @@ import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
 import Header from '../../Header/Header';
-import { fetchPokemon } from '../../../API/fetchAPI';
+import { fetchPokemon, fetchType } from '../../../API/fetchAPI';
 import './pokePageContainer.css';
 import PokemonForces from '../PokemonForces/PokemonForces';
 
@@ -19,14 +19,14 @@ export default class PokePageContainer extends Component {
       weight: undefined,
       ability: undefined,
       types: [],
-      forceAgainst: {
-        strong: [],
-        weak: [],
-      },
+      force: [],
+      weakness: [],
     };
 
     this.getPokemonInfo = this.getPokemonInfo.bind(this);
     this.getForces = this.getForces.bind(this);
+    this.getWeakness = this.getWeakness.bind(this);
+    this.buildState = this.buildState.bind(this);
   }
 
   getPokemonInfo({ name, sprites, height, weight, abilities, types }) {
@@ -40,36 +40,65 @@ export default class PokePageContainer extends Component {
     });
   }
 
-  getForces(type) {
-    console.log(type);
+  getForces({ damage_relations }) {
+    const force = damage_relations.double_damage_to;
+
+    this.setState({ force: force.map(({ name }) => name) });
+  }
+
+  getWeakness({ damage_relations }) {
+    const weakness = damage_relations.double_damage_from;
+
+    this.setState({ weakness: weakness.map(({ name }) => name) });
+  }
+
+  buildState(data) {
+    this.getPokemonInfo(data);
+
+    const { types } = this.state;
+
+    types.forEach((type) => {
+      fetchType(type, (data) => {
+        this.getForces(data);
+        this.getWeakness(data);
+      });
+    });
   }
 
   componentDidMount() {
-    fetchPokemon(this.state.pokemon, this.getPokemonInfo);
+    const { pokemon } = this.state;
+    fetchPokemon(pokemon, this.buildState);
   }
 
   render() {
+    const { name, sprite, height, weight, ability, types, force, weakness } =
+      this.state;
+
     return (
       <article>
         <Header />
         <div className="pokemon-page-container">
           <section className="pokemon-page-title">
-            <PokemonName name={this.state.name} />
+            <PokemonName name={name} />
           </section>
 
           <section className="pokemon-page-sprite">
-            <PokemonImage sprite={this.state.sprite} name={this.state.name} />
+            <PokemonImage sprite={sprite} name={name} />
           </section>
 
           <div className="pokemon-page-physics">
             <PokemonPhysical
-              height={this.state.height}
-              weight={this.state.weight}
-              ability={this.state.ability}
+              height={height}
+              weight={weight}
+              ability={ability}
             />
           </div>
 
-          <PokemonForces types={this.state.types} getForces={this.getForces} />
+          <PokemonForces
+            types={types}
+            force={force}
+            weakness={weakness}
+          />
         </div>
       </article>
     );
