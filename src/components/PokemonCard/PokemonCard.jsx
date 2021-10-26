@@ -19,7 +19,7 @@ export default class PokeCard extends Component {
 
     return (
       <div className="pokemon-container-card">
-        <Link to={`/pokemon/${this.props.pokemonName}`}>
+        <Link to={`/pokemon/${this.props.pokemonId}`}>
           <div className="pokemon-container-img">
             <img src={pokemonSprite} alt="pokemon" />
           </div>

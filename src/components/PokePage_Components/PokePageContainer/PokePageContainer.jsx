@@ -24,7 +24,7 @@ export default class PokePageContainer extends Component {
 
   getPokemonInfo({ name, sprites, height, weight, abilities }) {
     this.setState({
-      name,
+      name: name.replace(/^\w/, (char) => char.toUpperCase()),
       sprite: sprites.front_default,
       height,
       weight,
