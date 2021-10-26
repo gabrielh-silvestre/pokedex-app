@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { fetchType } from '../../../API/fetchAPI';
+import './pokemonForces.css';
 
 export default class PokemonForces extends Component {
   constructor(props) {
@@ -20,28 +20,28 @@ export default class PokemonForces extends Component {
     const { types, force, weakness } = this.props;
 
     return (
-      <div>
-        <div>
+      <article className="pokemon-force-container">
+        <section className="pokemon-force-section">
           <h3>Type</h3>
-          <div>
+          <div className="pokemon-types">
             {this.renderTypes(types)}
           </div>
-        </div>
+        </section>
 
-        <div>
+        <section className="pokemon-force-section">
           <h3>Strong Against</h3>
-          <div>
+          <div className="pokemon-types">
             {this.renderTypes(force)}
           </div>
-        </div>
+        </section>
 
-        <div>
+        <section className="pokemon-force-section">
           <h3>Weak Against</h3>
-          <div>
+          <div className="pokemon-types">
             {this.renderTypes(weakness)}
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
     );
   }
 }
