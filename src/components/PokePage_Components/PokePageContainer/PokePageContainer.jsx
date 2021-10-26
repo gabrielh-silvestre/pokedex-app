@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
+import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
 import fetchPokemon from '../../../API/fetchPokemon';
 
 export default class PokePageContainer extends Component {
@@ -38,6 +39,11 @@ export default class PokePageContainer extends Component {
       <div>
         <PokemonImage sprite={this.state.sprite} name={this.state.name} />
         <PokemonName name={this.state.name} />
+        <PokemonPhysical
+          height={this.state.height}
+          weight={this.state.weight}
+          ability={this.state.ability}
+        />
       </div>
     );
   }
