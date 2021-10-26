@@ -1,12 +1,14 @@
 import './App.css';
-import Container from './components/Container/Container';
 import Header from './components/Header/Header';
+import PokeCard from './components/PokemonCard/PokemonCard';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Container />
+      <article>
+        <PokeCard />
+      </article>
     </div>
   );
 }
