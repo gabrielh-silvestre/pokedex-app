@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import fetchPokemon from '../../../API/fetchPokemon';
 
 export default class PokemonImage extends Component {
   constructor(props) {
@@ -8,7 +9,6 @@ export default class PokemonImage extends Component {
       sprite: undefined,
     }
 
-    this.fetchPokemon = this.fetchPokemon.bind(this);
     this.getSprite = this.getSprite.bind(this);
   }
 
@@ -16,14 +16,8 @@ export default class PokemonImage extends Component {
     this.setState({ sprite: sprites.front_default });
   }
 
-  async fetchPokemon() {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.pokemonName}`);
-    const data = await res.json();
-    this.getSprite(data);
-  }
-
   componentDidMount() {
-    this.fetchPokemon()
+    fetchPokemon(this.props.pokemonName, this.getSprite);
   }
 
   render() {
