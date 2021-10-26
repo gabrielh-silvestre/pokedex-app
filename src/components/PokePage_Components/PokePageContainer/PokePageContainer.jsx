@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PokemonImage from '../PokemonImage/PokemonImage'
+import React, { Component } from 'react';
+import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import fetchPokemon from '../../../API/fetchPokemon';
 
@@ -11,25 +11,26 @@ export default class PokePageContainer extends Component {
       pokemon: this.props.match.params.pokemonName,
       sprite: undefined,
       name: undefined,
-    }
+      height: undefined,
+      weight: undefined,
+      ability: undefined,
+    };
 
-    this.getSprite = this.getSprite.bind(this);
-    this.getName = this.getName.bind(this);
+    this.getPokemonInfo = this.getPokemonInfo.bind(this);
   }
 
-  getName({ name }) {
-    this.setState({ name: name });
-  }
-
-  getSprite({ sprites }) {
-    this.setState({ sprite: sprites.front_default });
+  getPokemonInfo({ name, sprites, height, weight, abilities }) {
+    this.setState({
+      name,
+      sprite: sprites.front_default,
+      height,
+      weight,
+      ability: abilities[0].ability.name,
+    });
   }
 
   componentDidMount() {
-    fetchPokemon(this.state.pokemon, (data) => {
-      this.getSprite(data);
-      this.getName(data);
-    });
+    fetchPokemon(this.state.pokemon, this.getPokemonInfo);
   }
 
   render() {
@@ -38,6 +39,6 @@ export default class PokePageContainer extends Component {
         <PokemonImage sprite={this.state.sprite} name={this.state.name} />
         <PokemonName name={this.state.name} />
       </div>
-    )
+    );
   }
 }
