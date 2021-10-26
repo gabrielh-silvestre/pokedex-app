@@ -22,7 +22,7 @@ export default class Container extends Component {
   cardConstructor({ id, name, sprites, types }) {
     return {
       id,
-      name,
+      name: name.replace(/^\w/, (char) => char.toUpperCase()),
       sprite: sprites.front_default,
       types,
     };
