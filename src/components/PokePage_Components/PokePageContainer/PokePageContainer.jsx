@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
+import Header from '../../Header/Header';
 import fetchPokemon from '../../../API/fetchPokemon';
+import './pokePageContainer.css';
 
 export default class PokePageContainer extends Component {
   constructor(props) {
@@ -36,15 +38,26 @@ export default class PokePageContainer extends Component {
 
   render() {
     return (
-      <div>
-        <PokemonImage sprite={this.state.sprite} name={this.state.name} />
-        <PokemonName name={this.state.name} />
-        <PokemonPhysical
-          height={this.state.height}
-          weight={this.state.weight}
-          ability={this.state.ability}
-        />
-      </div>
+      <article>
+        <Header />
+        <div className="pokemon-page-container">
+          <section className="pokemon-page-title">
+            <PokemonName name={this.state.name} />
+          </section>
+
+          <section className="pokemon-page-sprite">
+            <PokemonImage sprite={this.state.sprite} name={this.state.name} />
+          </section>
+
+          <div className="pokemon-page-physics">
+            <PokemonPhysical
+              height={this.state.height}
+              weight={this.state.weight}
+              ability={this.state.ability}
+            />
+          </div>
+        </div>
+      </article>
     );
   }
 }
