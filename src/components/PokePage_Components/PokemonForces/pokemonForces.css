@@ -1,8 +1,14 @@
 .pokemon-force-container {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 70vh;
   justify-content: space-around;
+}
+
+.pokemon-force-section h3 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
 }
 
 .pokemon-types {
