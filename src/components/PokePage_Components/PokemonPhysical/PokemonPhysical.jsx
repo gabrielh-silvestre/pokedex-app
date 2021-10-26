@@ -5,22 +5,22 @@ export default class PokemonPhysical extends Component {
     const { height, weight, ability } = this.props;
 
     return (
-      <div>
+      <section>
         <div>
-          <p>Height</p>
-          <p>{height}</p>
+          <h3>Height</h3>
+          <p>{height} m</p>
         </div>
 
         <div>
-          <p>Weight</p>
-          <p>{weight}</p>
+          <h3>Weight</h3>
+          <p>{(weight / 10).toFixed(1)} Kg</p>
         </div>
 
         <div>
-          <p>Ability</p>
+          <h3>Ability</h3>
           <p>{ability}</p>
         </div>
-      </div>
+      </section>
     )
   }
 }
