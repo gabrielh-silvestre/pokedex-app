@@ -14,21 +14,23 @@ export default class PokeCard extends Component {
   }
 
   render() {
+    const { pokemonSprite, pokemonId, pokemonName, pokemonTypes } = this.props;
+
     return (
       <div className="pokemon-container-card">
         <div className="pokemon-container-img">
-          <img src={this.props.pokemonSprite} alt="pokemon" />
+          <img src={pokemonSprite} alt="pokemon" />
         </div>
 
         <div className="pokemon-container-info">
           <div className="pokemon-id">
-            <p>{this.props.pokemonId}</p>
+            <p>{pokemonId}</p>
           </div>
           <div className="pokemon-name">
-            <h4>{this.props.pokemonName}</h4>
+            <h4>{pokemonName}</h4>
           </div>
           <div className="pokemon-types-container">
-            {this.renderTypes(this.props.pokemonTypes)}
+            {this.renderTypes(pokemonTypes)}
           </div>
         </div>
       </div>

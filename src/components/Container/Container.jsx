@@ -7,17 +7,16 @@ export default class Container extends Component {
     super(props);
 
     this.state = {
-      allPokemons: [],
-      manyPokes: 24,
+      savedPokemons: [],
+      loading: true,
+      lastPokemon: 1,
+      manyPokemons: 24,
     };
 
     this.cardConstructor = this.cardConstructor.bind(this);
-    this.getPokemonById = this.getPokemonById.bind(this);
-    this.getMultPokes = this.getMultPokes.bind(this);
-    this.increasePokemons = this.increasePokemons.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.renderPokemons = this.renderPokemons.bind(this);
-    this.setAllPokemons = this.setAllPokemons.bind(this);
+    this.renderTypes = this.renderTypes.bind(this);
+    this.fetchPokemonId = this.fetchPokemonId.bind(this);
+    this.getMultPokemons = this.getMultPokemons.bind(this);
   }
 
   cardConstructor({ id, name, sprites, types }) {
@@ -29,68 +28,68 @@ export default class Container extends Component {
     };
   }
 
-  async getPokemonById(id) {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const data = await res.json();
-    return this.cardConstructor(data);
+  savePokemon() {
+    this.setState(({ savedPokemons, newPokemon }) => ({
+      savedPokemons: [...savedPokemons, newPokemon],
+    }));
+
+    this.fetchPokemonId(1);
   }
 
-  getMultPokes() {
-    const tempArr = [];
-
-    for (let i = 1; i <= this.state.manyPokes; i += 1) {
-      tempArr.push(this.getPokemonById(i));
-    }
-
-    return tempArr;
+  renderTypes(typesArr) {
+    return typesArr.map(({ type }) => (
+      <span className={`pokemon-type ${type.name}`} key={type.name}>
+        {type.name}
+      </span>
+    ));
   }
 
-  setAllPokemons() {
-    Promise.all(this.getMultPokes()).then((data) =>
-      this.setState({ allPokemons: data })
-    );
-  }
-
-  renderPokemons() {
-    return this.state.allPokemons.map((item) => {
-      return (
-        <PokeCard
-          key={item.name}
-          pokemonName={item.name}
-          pokemonId={item.id}
-          pokemonSprite={item.sprite}
-          pokemonTypes={item.types}
-        />
-      );
+  async fetchPokemonId(id) {
+    this.setState({ loading: true }, async () => {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const data = await res.json();
+      this.setState((prev) => ({
+        loading: false,
+        savedPokemons: [...prev.savedPokemons, this.cardConstructor(data)],
+      }));
     });
   }
 
-  componentDidMount = () => {
-    this.setAllPokemons();
-  };
-
-  componentDidUpdate = (_prevProps, prevState, _snapshot) => {
-    if (this.state.manyPokes !== prevState.manyPokes) {
-      this.setAllPokemons();
-      this.renderPokemons();
+  getMultPokemons() {
+    const { lastPokemon, manyPokemons } = this.state;
+    for (let i = lastPokemon; i <= manyPokemons; i += 1) {
+      this.fetchPokemonId(i);
+      this.setState((prev) => ({
+        lastPokemon: prev.lastPokemon + 1,
+        manyPokemons: prev.manyPokemons + 1,
+      }));
     }
-  };
-
-  increasePokemons() {
-    this.setState((prev, _props) => ({
-      manyPokes: prev.manyPokes + 24,
-    }));
   }
 
-  handleClick() {
-    this.increasePokemons();
+  componentDidMount() {
+    this.getMultPokemons();
+  }
+
+  renderPokeCard({ id, name, sprite, types }) {
+    return (
+      <PokeCard
+        key={name}
+        pokemonSprite={sprite}
+        pokemonId={id}
+        pokemonName={name}
+        pokemonTypes={types}
+      />
+    );
   }
 
   render() {
+    const { savedPokemons } = this.state;
     return (
       <div>
-        {this.renderPokemons()}
-        <Button btnContent="Carregar mais" callback={this.handleClick} />
+        {savedPokemons
+          .sort((a, b) => a.id - b.id)
+          .map((pokemon) => this.renderPokeCard(pokemon))}
+        <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
       </div>
     );
   }

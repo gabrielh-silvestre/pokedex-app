@@ -17,6 +17,7 @@ p {
 .pokemon-container-img {
   align-items: center;
   background-color: #cfcfcf;
+  border-radius: 4px 4px 0 0;
   display: flex;
   padding: 1rem;
   justify-content: center;
