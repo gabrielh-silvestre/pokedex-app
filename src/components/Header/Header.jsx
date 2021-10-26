@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Turn as Hamburger } from 'hamburger-react';
+import { Link } from 'react-router-dom';
 import './header.css';
 
 export default class Header extends Component {
@@ -24,7 +25,9 @@ export default class Header extends Component {
       <header>
         <div className="container">
           <div className="header-title">
-            <h1>Pokedex</h1>
+            <Link to="/">
+              <h1>Pokedex</h1>
+            </Link>
           </div>
           <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
           <nav className="header-menu" style={{display: this.state.mobileMenu}}>
