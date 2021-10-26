@@ -24,7 +24,7 @@ export default class PokeCard extends Component {
 
         <div className="pokemon-container-info">
           <div className="pokemon-id">
-            <p>{pokemonId}</p>
+            <p>Nº {pokemonId}</p>
           </div>
           <div className="pokemon-name">
             <h4>{pokemonName}</h4>
