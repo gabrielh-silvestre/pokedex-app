@@ -2,7 +2,7 @@ h4 {
   font-weight: normal;
 }
 
-p {
+.pokemon-id p {
   color: #777777;
   font-size: 12px;
 }
@@ -31,9 +31,14 @@ p {
   margin-top: 1rem;
 }
 
+.pokemon-name h4 {
+  color: #5e5e5e;
+}
+
 .pokemon-type {
   background-color: yellowgreen;
   border-radius: 15px;
+  color: white;
   font-size: 12px;
   padding: 1px 15px;
   margin-right: 1rem;
