@@ -3,8 +3,9 @@ import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
 import Header from '../../Header/Header';
-import fetchPokemon from '../../../API/fetchPokemon';
+import { fetchPokemon } from '../../../API/fetchAPI';
 import './pokePageContainer.css';
+import PokemonForces from '../PokemonForces/PokemonForces';
 
 export default class PokePageContainer extends Component {
   constructor(props) {
@@ -17,19 +18,30 @@ export default class PokePageContainer extends Component {
       height: undefined,
       weight: undefined,
       ability: undefined,
+      types: [],
+      forceAgainst: {
+        strong: [],
+        weak: [],
+      },
     };
 
     this.getPokemonInfo = this.getPokemonInfo.bind(this);
+    this.getForces = this.getForces.bind(this);
   }
 
-  getPokemonInfo({ name, sprites, height, weight, abilities }) {
+  getPokemonInfo({ name, sprites, height, weight, abilities, types }) {
     this.setState({
       name: name.replace(/^\w/, (char) => char.toUpperCase()),
       sprite: sprites.front_default,
       height,
       weight,
       ability: abilities[0].ability.name,
+      types: types.map(({ type }) => type.name),
     });
+  }
+
+  getForces(type) {
+    console.log(type);
   }
 
   componentDidMount() {
@@ -56,6 +68,8 @@ export default class PokePageContainer extends Component {
               ability={this.state.ability}
             />
           </div>
+
+          <PokemonForces types={this.state.types} getForces={this.getForces} />
         </div>
       </article>
     );
