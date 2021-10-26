@@ -17,7 +17,7 @@ export default class PokemonForces extends Component {
   }
 
   render() {
-    const { types } = this.props;
+    const { types, force, weakness } = this.props;
 
     return (
       <div>
@@ -31,14 +31,14 @@ export default class PokemonForces extends Component {
         <div>
           <h3>Strong Against</h3>
           <div>
-            <p>"Types"</p>
+            {this.renderTypes(force)}
           </div>
         </div>
 
         <div>
           <h3>Weak Against</h3>
           <div>
-            <p>"Types"</p>
+            {this.renderTypes(weakness)}
           </div>
         </div>
       </div>
