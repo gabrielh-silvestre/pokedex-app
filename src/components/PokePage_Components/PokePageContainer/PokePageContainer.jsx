@@ -21,6 +21,12 @@ export default class PokePageContainer extends Component {
       types: [],
       force: [],
       weakness: [],
+      hp: undefined,
+      attack: undefined,
+      specialAttack: undefined,
+      defense: undefined,
+      specialDefense: undefined,
+      speed: undefined,
     };
 
     this.getPokemonInfo = this.getPokemonInfo.bind(this);
