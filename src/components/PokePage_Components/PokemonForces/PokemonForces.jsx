@@ -11,7 +11,7 @@ export default class PokemonForces extends Component {
   renderTypes(typesArr) {
     return typesArr.map((type) => (
       <p className={`pokemon-type ${type}`} key={type}>
-        {type}
+        {type.replace(/^\w/, (char) => char.toUpperCase())}
       </p>
     ));
   }

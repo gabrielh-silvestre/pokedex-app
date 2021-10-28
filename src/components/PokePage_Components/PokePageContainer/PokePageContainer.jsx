@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../../Header/Header';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
-import Header from '../../Header/Header';
+import PokemonForces from '../PokemonForces/PokemonForces';
+import PokemonStats from '../PokemonStats/PokemonStats';
 import { fetchPokemon, fetchType } from '../../../API/fetchAPI';
 import './pokePageContainer.css';
-import PokemonForces from '../PokemonForces/PokemonForces';
 
 export default class PokePageContainer extends Component {
   constructor(props) {
@@ -21,12 +22,19 @@ export default class PokePageContainer extends Component {
       types: [],
       force: [],
       weakness: [],
+      hp: undefined,
+      attack: undefined,
+      'special-attack': undefined,
+      defense: undefined,
+      'special-defense': undefined,
+      speed: undefined,
     };
 
     this.getPokemonInfo = this.getPokemonInfo.bind(this);
     this.getForces = this.getForces.bind(this);
     this.getWeakness = this.getWeakness.bind(this);
     this.buildState = this.buildState.bind(this);
+    this.getStats = this.getStats.bind(this);
   }
 
   getPokemonInfo({ name, sprites, height, weight, abilities, types }) {
@@ -37,6 +45,12 @@ export default class PokePageContainer extends Component {
       weight,
       ability: abilities[0].ability.name,
       types: types.map(({ type }) => type.name),
+    });
+  }
+
+  getStats({ stats }) {
+    stats.forEach((s) => {
+      this.setState({ [s.stat.name]: s.base_stat });
     });
   }
 
@@ -54,6 +68,7 @@ export default class PokePageContainer extends Component {
 
   buildState(data) {
     this.getPokemonInfo(data);
+    this.getStats(data);
 
     const { types } = this.state;
 
@@ -71,8 +86,19 @@ export default class PokePageContainer extends Component {
   }
 
   render() {
-    const { name, sprite, height, weight, ability, types, force, weakness } =
-      this.state;
+    const {
+      name,
+      sprite,
+      height,
+      weight,
+      ability,
+      types,
+      force,
+      weakness,
+      attack,
+      defense,
+      speed,
+    } = this.state;
 
     return (
       <article>
@@ -96,6 +122,16 @@ export default class PokePageContainer extends Component {
 
           <div>
             <PokemonForces types={types} force={force} weakness={weakness} />
+          </div>
+
+          <div>
+            <PokemonStats
+              attack={attack}
+              spAttack={this.state['special-attack']}
+              defense={defense}
+              spDefense={this.state['special-defense']}
+              speed={speed}
+            />
           </div>
         </div>
       </article>
