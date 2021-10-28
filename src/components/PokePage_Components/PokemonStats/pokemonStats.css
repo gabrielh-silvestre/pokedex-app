@@ -13,18 +13,18 @@
 }
 
 .poke-stats-container h3, .poke-stats-section h2 {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #f3f3f3;
   font-weight: normal;
 }
 
 .poke-stats-section h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
 .poke-stats-container p {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-top: 0.5rem;
 }
 
