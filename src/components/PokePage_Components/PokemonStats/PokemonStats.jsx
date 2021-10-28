@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './pokemonStats.css';
 
 export default class PokemonStats extends Component {
   render() {
     const { attack, spAttack, defense, spDefense, speed } = this.props;
 
     return (
-      <section>
-        <div>
+      <section className="poke-stats-section">
+        <h2>Base Stats</h2>
+        <div className="poke-stats-container">
           <div>
             <h3>Attack</h3>
             <p>{attack}</p>
@@ -15,9 +17,6 @@ export default class PokemonStats extends Component {
             <h3>Defense</h3>
             <p>{defense}</p>
           </div>
-        </div>
-
-        <div>
           <div>
             <h3>Special-Attack</h3>
             <p>{spAttack}</p>
@@ -26,15 +25,13 @@ export default class PokemonStats extends Component {
             <h3>Special-Defense</h3>
             <p>{spDefense}</p>
           </div>
-        </div>
 
-        <div>
           <div>
             <h3>Speed</h3>
             <p>{speed}</p>
           </div>
         </div>
       </section>
-    )
+    );
   }
 }

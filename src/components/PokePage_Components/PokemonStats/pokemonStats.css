@@ -1,0 +1,33 @@
+.poke-stats-section {
+  background-color: #35A7D7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.poke-stats-container div {
+  margin-top: 2rem;
+}
+
+.poke-stats-container h3, .poke-stats-section h2 {
+  font-size: 1.8rem;
+  color: #f3f3f3;
+  font-weight: normal;
+}
+
+.poke-stats-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.poke-stats-container p {
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+}
+
+.poke-speed {
+  align-self: center;
+}
