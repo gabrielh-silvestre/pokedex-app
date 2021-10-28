@@ -23,9 +23,9 @@ export default class PokePageContainer extends Component {
       weakness: [],
       hp: undefined,
       attack: undefined,
-      specialAttack: undefined,
+      'special-attack': undefined,
       defense: undefined,
-      specialDefense: undefined,
+      'special-defense': undefined,
       speed: undefined,
     };
 
@@ -33,6 +33,7 @@ export default class PokePageContainer extends Component {
     this.getForces = this.getForces.bind(this);
     this.getWeakness = this.getWeakness.bind(this);
     this.buildState = this.buildState.bind(this);
+    this.getStats = this.getStats.bind(this);
   }
 
   getPokemonInfo({ name, sprites, height, weight, abilities, types }) {
@@ -44,6 +45,12 @@ export default class PokePageContainer extends Component {
       ability: abilities[0].ability.name,
       types: types.map(({ type }) => type.name),
     });
+  }
+
+  getStats({ stats }) {
+    stats.forEach((s) => {
+      this.setState({ [s.stat.name]: s.base_stat })
+    })
   }
 
   getForces({ damage_relations }) {
@@ -60,6 +67,7 @@ export default class PokePageContainer extends Component {
 
   buildState(data) {
     this.getPokemonInfo(data);
+    this.getStats(data);
 
     const { types } = this.state;
 
