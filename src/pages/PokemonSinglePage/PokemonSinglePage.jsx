@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Header from '../../Header/Header';
-import PokemonImage from '../PokemonImage/PokemonImage';
-import PokemonName from '../PokemonName/PokemonName';
-import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
-import PokemonForces from '../PokemonForces/PokemonForces';
-import PokemonStats from '../PokemonStats/PokemonStats';
-import { fetchPokemon, fetchType } from '../../../API/fetchAPI';
-import './pokePageContainer.css';
+import Header from '../../components/Header/Header'
+import PokemonImage from '../../components/PokemonImage/PokemonImage';
+import PokemonName from '../../components/PokemonName/PokemonName';
+import PokemonPhysical from '../../components/PokemonPhysical/PokemonPhysical';
+import PokemonForces from '../../components/PokemonForces/PokemonForces';
+import PokemonStats from '../../components/PokemonStats/PokemonStats';
+import { fetchPokemon, fetchType } from '../../API/fetchAPI';
+import './pokemonSinglePage.css'
 
-export default class PokePageContainer extends Component {
+export default class PokemonSinglePage extends Component {
   constructor(props) {
     super(props);
 
