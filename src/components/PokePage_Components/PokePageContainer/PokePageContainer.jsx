@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../../Header/Header';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonPhysical from '../PokemonPhysical/PokemonPhysical';
-import Header from '../../Header/Header';
+import PokemonForces from '../PokemonForces/PokemonForces';
+import PokemonStats from '../PokemonStats/PokemonStats';
 import { fetchPokemon, fetchType } from '../../../API/fetchAPI';
 import './pokePageContainer.css';
-import PokemonForces from '../PokemonForces/PokemonForces';
 
 export default class PokePageContainer extends Component {
   constructor(props) {
@@ -49,8 +50,8 @@ export default class PokePageContainer extends Component {
 
   getStats({ stats }) {
     stats.forEach((s) => {
-      this.setState({ [s.stat.name]: s.base_stat })
-    })
+      this.setState({ [s.stat.name]: s.base_stat });
+    });
   }
 
   getForces({ damage_relations }) {
@@ -85,8 +86,19 @@ export default class PokePageContainer extends Component {
   }
 
   render() {
-    const { name, sprite, height, weight, ability, types, force, weakness } =
-      this.state;
+    const {
+      name,
+      sprite,
+      height,
+      weight,
+      ability,
+      types,
+      force,
+      weakness,
+      attack,
+      defense,
+      speed,
+    } = this.state;
 
     return (
       <article>
@@ -110,6 +122,16 @@ export default class PokePageContainer extends Component {
 
           <div>
             <PokemonForces types={types} force={force} weakness={weakness} />
+          </div>
+
+          <div>
+            <PokemonStats
+              attack={attack}
+              spAttack={this.state['special-attack']}
+              defense={defense}
+              spDefense={this.state['special-defense']}
+              speed={speed}
+            />
           </div>
         </div>
       </article>
