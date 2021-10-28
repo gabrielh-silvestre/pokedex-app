@@ -30,15 +30,17 @@
 }
 
 .pokemon-page-physics p, .pokemon-page-physics h3 {
-  font-size: 1.4rem;
   text-align: center;
 }
 
 .pokemon-page-physics p {
   color: black;
+  font-size: 1.6rem;
   margin: 1rem 0 2rem;
 }
 
 .pokemon-page-physics h3 {
   color: #f3f3f3;
+  font-size: 1.8rem;
+  font-weight: normal;
 }
