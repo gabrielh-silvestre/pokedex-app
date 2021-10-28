@@ -10,4 +10,10 @@ async function fetchType(type, callback) {
   callback(data);
 }
 
-export { fetchPokemon, fetchType };
+async function fetchEvolution(id, callback) {
+  const res = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}`);
+  const data = await res.json();
+  callback(data);
+}
+
+export { fetchPokemon, fetchType, fetchEvolution };
