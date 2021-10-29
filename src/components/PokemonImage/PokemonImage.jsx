@@ -7,7 +7,7 @@ export default class PokemonImage extends Component {
 
     return (
       <>
-        <img src={sprite} alt={name} />
+        <img className="w-8/12" src={sprite} alt={name} />
       </>
     )
   }
