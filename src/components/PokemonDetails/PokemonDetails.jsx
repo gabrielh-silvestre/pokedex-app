@@ -96,30 +96,30 @@ export default class PokemonDetails extends Component {
 
     return (
       <article>
-        <div className="pokemon-page-container">
-          <section className="pokemon-page-title">
+        <div className="px-4">
+          <section className="text-5xl text-center my-4 text-gray-400">
             <h1>
               <PokemonName name={name} />
             </h1>
           </section>
 
-          <section className="pokemon-page-sprite">
+          <section className="flex justify-center items-center w-full bg-gray-200 my-4 rounded-lg">
             <PokemonImage sprite={sprite} name={name} />
           </section>
 
-          <div className="pokemon-page-physics">
+          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg">
             <PokemonPhysical
               height={height}
               weight={weight}
               ability={ability}
             />
-          </div>
+          </section>
 
-          <div>
+          <section className="my-4 px-4">
             <PokemonForces types={types} force={force} weakness={weakness} />
-          </div>
+          </section>
 
-          <div>
+          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg">
             <PokemonStats
               attack={attack}
               spAttack={this.state['special-attack']}
@@ -127,7 +127,7 @@ export default class PokemonDetails extends Component {
               spDefense={this.state['special-defense']}
               speed={speed}
             />
-          </div>
+          </section>
         </div>
       </article>
     );
