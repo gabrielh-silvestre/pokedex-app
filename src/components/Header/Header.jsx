@@ -21,16 +21,18 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header className="bg-red-600 py-4">
-        <div className="flex justify-between px-4 sm:container mx-auto">
+      <header className="bg-red-600 py-4 sticky top-0">
+        <div className="flex justify-between px-4 mx-auto lg:px-24">
           <div className="flex items-center">
             <Link to="/">
               <h1 className="text-4xl text-gray-100">Pokedex</h1>
             </Link>
           </div>
-          <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
-          <nav className="bg-red-600 p-4 absolute right-0 top-20 rounded-bl-lg" style={{display: this.state.mobileMenu}}>
-            <ul className="text-lg text-right text-gray-100">
+          <div className="lg:hidden">
+            <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
+          </div>
+          <nav className="bg-red-600 p-4 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static">
+            <ul className="text-lg text-right text-gray-100 lg:flex">
               <li className="my-2">
                 <a
                   href="https://www.pokemon.com/br/pokedex/"
@@ -40,7 +42,7 @@ export default class Header extends Component {
                   Pokedex Nintendo
                 </a>
               </li>
-              <li className="my-2">
+              <li className="my-2 lg:ml-5">
                 <a
                   href="https://github.com/gabrielh-silvestre"
                   target="_blank"
@@ -49,7 +51,7 @@ export default class Header extends Component {
                   GitHub
                 </a>
               </li>
-              <li className="my-2">
+              <li className="my-2 lg:ml-5">
                 <a
                   href="https://www.linkedin.com/in/gabrielh-silvestre/"
                   target="_blank"
