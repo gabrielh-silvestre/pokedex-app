@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PokemonTypes from '../PokemonTypes/PokemonTypes';
-import './pokemonForces.css';
 
 export default class PokemonForces extends Component {
   constructor(props) {

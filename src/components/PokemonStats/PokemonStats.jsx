@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './pokemonStats.css';
 import PropTypes from 'prop-types';
 
 export default class PokemonStats extends Component {

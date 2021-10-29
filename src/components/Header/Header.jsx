@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Turn as Hamburger } from 'hamburger-react';
 import { Link } from 'react-router-dom';
-import './header.css';
 
 export default class Header extends Component {
   constructor(props) {

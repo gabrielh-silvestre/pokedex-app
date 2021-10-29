@@ -7,7 +7,6 @@ import PokemonForces from '../../components/PokemonForces/PokemonForces';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import { fetchType } from '../../API/fetchAPI';
 import pokemonData from '../../data/PokemonData';
-import './pokemonDetails.css';
 
 export default class PokemonDetails extends Component {
   constructor(props) {

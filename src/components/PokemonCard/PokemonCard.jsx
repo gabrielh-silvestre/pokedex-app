@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import PokemonName from '../PokemonName/PokemonName';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonTypes from '../PokemonTypes/PokemonTypes';
-import './pokeCard.css';
 
 export default class PokeCard extends Component {
   render() {
