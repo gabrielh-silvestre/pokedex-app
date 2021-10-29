@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Container from '../../components/Container/Container';
+import Pokedex from '../../components/Pokedex/Pokedex';
 import Header from '../../components/Header/Header';
 
 export default class Home extends Component {
@@ -7,7 +7,7 @@ export default class Home extends Component {
     return (
       <div>
         <Header />
-        <Container />
+        <Pokedex />
       </div>
     );
   }
