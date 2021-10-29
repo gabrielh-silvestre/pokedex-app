@@ -21,7 +21,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header className="bg-red-600 py-4 sticky top-0">
+      <header className="bg-red-600 py-4 sticky top-0 lg:py-2">
         <div className="flex justify-between px-4 mx-auto lg:px-24">
           <div className="flex items-center">
             <Link to="/">
