@@ -74,7 +74,7 @@ export default class Container extends Component {
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => this.renderPokeCard(pokemon))}
 
-        <div className="flex justify-center pb-8">
+        <div className="flex justify-center pb-8 sm:col-span-2">
           <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
         </div>
       </article>
