@@ -25,7 +25,7 @@ export default class PokeCard extends Component {
                 <PokemonName name={name} />
               </h4>
             </div>
-            <div className="flex justify-around mb-2">
+            <div className="flex justify-around my-2 text-xs">
               <PokemonTypes types={types} />
             </div>
           </div>
