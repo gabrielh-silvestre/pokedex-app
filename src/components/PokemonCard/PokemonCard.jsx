@@ -1,49 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import PokemonName from '../PokemonName/PokemonName';
+import PokemonImage from '../PokemonImage/PokemonImage';
+import PokemonTypes from '../PokemonTypes/PokemonTypes';
 import './pokeCard.css';
 
 export default class PokeCard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.renderTypes = this.renderTypes.bind(this);
-  }
-
-  renderTypes(typesArr) {
-    return typesArr.map(({ type }) => <span className={`pokemon-type ${type.name}`} key={type.name}>{type.name}</span>);
-  }
-
   render() {
-    const { pokemonSprite, pokemonId, pokemonName, pokemonTypes } = this.props;
+    const { sprite, id, name, types } = this.props.pokemon;
 
     return (
-      <div className="pokemon-container-card">
-        <Link to={`/pokemon/${this.props.pokemonId}`}>
+      <section className="pokemon-container-card">
+        <Link to={`/pokemon/${id}`}>
           <div className="pokemon-container-img">
-            <img src={pokemonSprite} alt="pokemon" />
+            <PokemonImage sprite={sprite} name={name} />
           </div>
 
           <div className="pokemon-container-info">
             <div className="pokemon-id">
-              <p>Nº {pokemonId}</p>
+              <p>Nº {id}</p>
             </div>
             <div className="pokemon-name">
-              <h4>{pokemonName}</h4>
+              <h4>
+                <PokemonName name={name} />
+              </h4>
             </div>
             <div className="pokemon-types-container">
-              {this.renderTypes(pokemonTypes)}
+              <PokemonTypes types={types} />
             </div>
           </div>
         </Link>
-      </div>
+      </section>
     );
   }
 }
 
 PokeCard.propTypes = {
-  pokemonSprite: PropTypes.string.isRequired,
-  pokemonId: PropTypes.number.isRequired,
-  pokemonName: PropTypes.string.isRequired,
-  pokemonTypes: PropTypes.array.isRequired,
+  pokemonObj: PropTypes.object,
 };
