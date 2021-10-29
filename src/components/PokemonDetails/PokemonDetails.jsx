@@ -7,7 +7,6 @@ import PokemonForces from '../../components/PokemonForces/PokemonForces';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import { fetchType } from '../../API/fetchAPI';
 import pokemonData from '../../data/PokemonData';
-import './pokemonDetails.css';
 
 export default class PokemonDetails extends Component {
   constructor(props) {
@@ -97,30 +96,30 @@ export default class PokemonDetails extends Component {
 
     return (
       <article>
-        <div className="pokemon-page-container">
-          <section className="pokemon-page-title">
+        <div className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24">
+          <section className="text-5xl text-center my-4 text-gray-400 sm:row-start-1 sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:mb-0">
             <h1>
               <PokemonName name={name} />
             </h1>
           </section>
 
-          <section className="pokemon-page-sprite">
+          <section className="flex justify-center items-center w-full bg-gray-200 my-4 rounded lg:row-start-1 lg:row-span-2 lg:mb-0">
             <PokemonImage sprite={sprite} name={name} />
           </section>
 
-          <div className="pokemon-page-physics">
+          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg lg:col-start-2 lg:row-start-2 lg:mb-0">
             <PokemonPhysical
               height={height}
               weight={weight}
               ability={ability}
             />
-          </div>
+          </section>
 
-          <div>
+          <section className="bg-gray-200 my-4 p-4 rounded-lg sm:col-start-2 sm:flex sm:flex-col sm:justify-between lg:flex-row lg:row-start-4 lg:col-span-2">
             <PokemonForces types={types} force={force} weakness={weakness} />
-          </div>
+          </section>
 
-          <div>
+          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3 lg:col-span-2">
             <PokemonStats
               attack={attack}
               spAttack={this.state['special-attack']}
@@ -128,7 +127,7 @@ export default class PokemonDetails extends Component {
               spDefense={this.state['special-defense']}
               speed={speed}
             />
-          </div>
+          </section>
         </div>
       </article>
     );

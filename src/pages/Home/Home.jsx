@@ -5,10 +5,10 @@ import Header from '../../components/Header/Header';
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <main className="bg-gray-50">
         <Header />
         <Pokedex />
-      </div>
+      </main>
     );
   }
 }

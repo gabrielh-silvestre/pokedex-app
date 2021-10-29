@@ -36,10 +36,13 @@ export default class Container extends Component {
 
   async getPokemon(id) {
     this.setState({ loading: true }, async () => {
-      const pokemonObj = await pokemonData(id)
+      const pokemonObj = await pokemonData(id);
       this.setState((prev) => ({
         loading: false,
-        savedPokemons: [...prev.savedPokemons, this.cardConstructor(pokemonObj)],
+        savedPokemons: [
+          ...prev.savedPokemons,
+          this.cardConstructor(pokemonObj),
+        ],
       }));
     });
   }
@@ -60,22 +63,20 @@ export default class Container extends Component {
   }
 
   renderPokeCard(pokemonObj) {
-    return (
-      <PokeCard
-        key={pokemonObj.name}
-        pokemon={pokemonObj}
-      />
-    );
+    return <PokeCard key={pokemonObj.name} pokemon={pokemonObj} />;
   }
 
   render() {
     const { savedPokemons } = this.state;
     return (
-      <article>
+      <article className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24">
         {savedPokemons
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => this.renderPokeCard(pokemon))}
-        <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
+
+        <div className="flex justify-center pb-8 sm:col-span-2 lg:col-span-3">
+          <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
+        </div>
       </article>
     );
   }
