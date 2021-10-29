@@ -69,12 +69,12 @@ export default class Container extends Component {
   render() {
     const { savedPokemons } = this.state;
     return (
-      <article className="px-4 sm:grid sm:grid-cols-2 sm:gap-4">
+      <article className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24">
         {savedPokemons
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => this.renderPokeCard(pokemon))}
 
-        <div className="flex justify-center pb-8 sm:col-span-2">
+        <div className="flex justify-center pb-8 sm:col-span-2 lg:col-span-3">
           <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
         </div>
       </article>
