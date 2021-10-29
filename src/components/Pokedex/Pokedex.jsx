@@ -69,7 +69,7 @@ export default class Container extends Component {
   render() {
     const { savedPokemons } = this.state;
     return (
-      <article className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 2xl:w-4/5 2xl:mx-auto 2xl:grid-cols-4">
+      <article className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto xl:grid-cols-4">
         {savedPokemons
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => this.renderPokeCard(pokemon))}
