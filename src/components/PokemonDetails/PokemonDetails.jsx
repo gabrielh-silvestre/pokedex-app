@@ -115,11 +115,11 @@ export default class PokemonDetails extends Component {
             />
           </section>
 
-          <section className="bg-gray-200 my-4 p-4 rounded-lg">
+          <section className="bg-gray-200 my-4 p-4 rounded-lg sm:col-start-2 sm:flex sm:flex-col sm:justify-between">
             <PokemonForces types={types} force={force} weakness={weakness} />
           </section>
 
-          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg">
+          <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3">
             <PokemonStats
               attack={attack}
               spAttack={this.state['special-attack']}
