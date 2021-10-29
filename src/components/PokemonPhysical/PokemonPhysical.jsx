@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 export default class PokemonPhysical extends Component {
   render() {
@@ -23,4 +24,10 @@ export default class PokemonPhysical extends Component {
       </section>
     )
   }
+}
+
+PokemonPhysical.protoTypes = {
+  height: PropTypes.string.isRequired,
+  weight: PropTypes.string.isRequired,
+  ability: PropTypes.string.isRequired,
 }

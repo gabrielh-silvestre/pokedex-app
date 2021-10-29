@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './pokemonStats.css';
+import PropTypes from 'prop-types';
 
 export default class PokemonStats extends Component {
   render() {
@@ -34,4 +35,12 @@ export default class PokemonStats extends Component {
       </section>
     );
   }
+}
+
+PokemonStats.protoTypes = {
+  attack: PropTypes.string.isRequired,
+  spAttack: PropTypes.string.isRequired,
+  defense: PropTypes.string.isRequired,
+  spDefense: PropTypes.string.isRequired,
+  speed: PropTypes.string.isRequired,
 }
