@@ -11,7 +11,7 @@ export default class PokeCard extends Component {
 
     return (
       <Link to={`/pokemon/${id}`}>
-        <section className="flex flex-col items-center shadow w-4/5 mx-auto my-8 rounded">
+        <section className="flex flex-col items-center shadow-sm w-4/5 mx-auto my-8 rounded">
           <div className="flex items-center justify-center bg-gray-200 w-full h-40 rounded-t p-8">
             <PokemonImage sprite={sprite} name={name} />
           </div>
