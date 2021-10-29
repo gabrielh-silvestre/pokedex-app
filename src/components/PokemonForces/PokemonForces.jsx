@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PokemonTypes from '../PokemonTypes/PokemonTypes';
 import './pokemonForces.css';
 
@@ -39,10 +40,16 @@ export default class PokemonForces extends Component {
         <section className="pokemon-force-section">
           <h3>Weak Against</h3>
           <div className="pokemon-types">
-          <PokemonTypes types={weakness} />
+            <PokemonTypes types={weakness} />
           </div>
         </section>
       </article>
     );
   }
 }
+
+PokemonForces.protoTypes = {
+  types: PropTypes.arrayOf(PropTypes.string),
+  force: PropTypes.arrayOf(PropTypes.string),
+  weakness: PropTypes.arrayOf(PropTypes.string),
+};

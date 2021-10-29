@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './button.css';
 
 export default class Button extends Component {
   render() {
-    const { callback } = this.props;
+    const { callback, btnContent } = this.props;
     return (
       <div className="btn-container">
-        <button onClick={callback}>{this.props.btnContent}</button>
+        <button onClick={callback}>{btnContent}</button>
       </div>
     );
   }
+}
+
+Button.protoTypes = {
+  btnContent: PropTypes.string.isRequired,
+  callback: PropTypes.func,
 }

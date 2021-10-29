@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class PokemonTypes extends Component {
   constructor(props) {
@@ -20,4 +21,8 @@ export default class PokemonTypes extends Component {
 
     return <>{this.renderTypes(types)}</>;
   }
+}
+
+PokemonTypes.protoTypes = {
+  types: PropTypes.arrayOf(PropTypes.string),
 }

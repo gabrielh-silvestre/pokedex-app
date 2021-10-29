@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PokemonImage from '../../components/PokemonImage/PokemonImage';
 import PokemonName from '../../components/PokemonName/PokemonName';
 import PokemonPhysical from '../../components/PokemonPhysical/PokemonPhysical';
@@ -133,3 +134,7 @@ export default class PokemonDetails extends Component {
     );
   }
 }
+
+PokemonDetails.protoTypes = {
+  pokemon: PropTypes.string.isRequired,
+};
