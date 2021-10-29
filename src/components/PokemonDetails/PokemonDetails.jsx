@@ -115,7 +115,7 @@ export default class PokemonDetails extends Component {
             />
           </section>
 
-          <section className="my-4 px-4">
+          <section className="bg-gray-200 my-4 p-4 rounded-lg">
             <PokemonForces types={types} force={force} weakness={weakness} />
           </section>
 
