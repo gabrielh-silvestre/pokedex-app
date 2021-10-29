@@ -21,28 +21,28 @@ export default class PokemonForces extends Component {
     const { types, force, weakness } = this.props;
 
     return (
-      <article className="pokemon-force-container">
-        <section className="pokemon-force-section">
-          <h3>Type</h3>
-          <div className="pokemon-types">
+      <>
+        <section className="mb-8">
+          <h3 className="text-xl text-center mb-2">Type</h3>
+          <div className="flex flex-wrap justify-around">
             <PokemonTypes types={types} />
           </div>
         </section>
 
-        <section className="pokemon-force-section">
-          <h3>Strong Against</h3>
-          <div className="pokemon-types">
+        <section className="mb-8">
+          <h3 className="text-xl text-center mb-2">Strong Against</h3>
+          <div className="flex flex-wrap justify-around">
             <PokemonTypes types={force} />
           </div>
         </section>
 
-        <section className="pokemon-force-section">
-          <h3>Weak Against</h3>
-          <div className="pokemon-types">
+        <section className="mb-4">
+          <h3 className="text-xl text-center mb-2">Weak Against</h3>
+          <div className="flex flex-wrap justify-around">
             <PokemonTypes types={weakness} />
           </div>
         </section>
-      </article>
+      </>
     );
   }
 }
