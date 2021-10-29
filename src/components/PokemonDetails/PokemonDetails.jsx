@@ -96,7 +96,7 @@ export default class PokemonDetails extends Component {
 
     return (
       <article>
-        <div className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24">
+        <div className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24 2xl:w-4/5 2xl:mx-auto">
           <section className="text-5xl text-center my-4 text-gray-400 sm:row-start-1 sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:mb-0">
             <h1>
               <PokemonName name={name} />
