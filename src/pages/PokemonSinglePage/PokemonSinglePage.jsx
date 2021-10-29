@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header'
+import Header from '../../components/Header/Header';
 import PokemonImage from '../../components/PokemonImage/PokemonImage';
 import PokemonName from '../../components/PokemonName/PokemonName';
 import PokemonPhysical from '../../components/PokemonPhysical/PokemonPhysical';
 import PokemonForces from '../../components/PokemonForces/PokemonForces';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
-import { fetchPokemon, fetchType } from '../../API/fetchAPI';
-import './pokemonSinglePage.css'
+import { fetchType } from '../../API/fetchAPI';
+import pokemonData from '../../data/PokemonData';
+import './pokemonSinglePage.css';
 
 export default class PokemonSinglePage extends Component {
   constructor(props) {
@@ -30,28 +31,9 @@ export default class PokemonSinglePage extends Component {
       speed: undefined,
     };
 
-    this.getPokemonInfo = this.getPokemonInfo.bind(this);
     this.getForces = this.getForces.bind(this);
     this.getWeakness = this.getWeakness.bind(this);
     this.buildState = this.buildState.bind(this);
-    this.getStats = this.getStats.bind(this);
-  }
-
-  getPokemonInfo({ name, sprites, height, weight, abilities, types }) {
-    this.setState({
-      name: name.replace(/^\w/, (char) => char.toUpperCase()),
-      sprite: sprites.front_default,
-      height,
-      weight,
-      ability: abilities[0].ability.name,
-      types: types.map(({ type }) => type.name),
-    });
-  }
-
-  getStats({ stats }) {
-    stats.forEach((s) => {
-      this.setState({ [s.stat.name]: s.base_stat });
-    });
   }
 
   getForces({ damage_relations }) {
@@ -66,9 +48,23 @@ export default class PokemonSinglePage extends Component {
     this.setState({ weakness: weakness.map(({ name }) => name) });
   }
 
-  buildState(data) {
-    this.getPokemonInfo(data);
-    this.getStats(data);
+  async buildState(name) {
+    const infos = await pokemonData(name);
+
+    this.setState({
+      sprite: infos.sprite,
+      name: infos.name,
+      height: infos.charact.height,
+      weight: infos.charact.weight,
+      ability: infos.charact.ability,
+      types: infos.types,
+      hp: infos.stats.hp,
+      attack: infos.stats.attack,
+      'special-attack': infos.stats['special-attack'],
+      defense: infos.stats.defense,
+      'special-defense': infos.stats['special-defense'],
+      speed: infos.stats.speed,
+    });
 
     const { types } = this.state;
 
@@ -82,7 +78,7 @@ export default class PokemonSinglePage extends Component {
 
   componentDidMount() {
     const { pokemon } = this.state;
-    fetchPokemon(pokemon, this.buildState);
+    this.buildState(pokemon);
   }
 
   render() {
