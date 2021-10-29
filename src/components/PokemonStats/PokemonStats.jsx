@@ -6,32 +6,32 @@ export default class PokemonStats extends Component {
     const { attack, spAttack, defense, spDefense, speed } = this.props;
 
     return (
-      <section className="poke-stats-section">
-        <h2>Base Stats</h2>
+      <>
+        <h2 className="text-2xl text-gray-100 mb-4">Base Stats</h2>
         <div className="poke-stats-container">
-          <div>
-            <h3>Attack</h3>
-            <p>{attack}</p>
+          <div className="mb-2">
+            <h3 className="text-xl text-gray-100">Attack</h3>
+            <p className="text-lg">{attack}</p>
           </div>
-          <div>
-            <h3>Defense</h3>
-            <p>{defense}</p>
+          <div className="mb-2">
+            <h3 className="text-xl text-gray-100">Defense</h3>
+            <p className="text-lg">{defense}</p>
           </div>
-          <div>
-            <h3>Special-Attack</h3>
-            <p>{spAttack}</p>
+          <div className="mb-2">
+            <h3 className="text-xl text-gray-100">Special-Attack</h3>
+            <p className="text-lg">{spAttack}</p>
           </div>
-          <div>
-            <h3>Special-Defense</h3>
-            <p>{spDefense}</p>
+          <div className="mb-2">
+            <h3 className="text-xl text-gray-100">Special-Defense</h3>
+            <p className="text-lg">{spDefense}</p>
           </div>
 
-          <div>
-            <h3>Speed</h3>
-            <p>{speed}</p>
+          <div className="mb-2">
+            <h3 className="text-xl text-gray-100">Speed</h3>
+            <p className="text-lg">{speed}</p>
           </div>
         </div>
-      </section>
+      </>
     );
   }
 }
