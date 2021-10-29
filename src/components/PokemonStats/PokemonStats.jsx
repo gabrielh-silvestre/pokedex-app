@@ -8,7 +8,7 @@ export default class PokemonStats extends Component {
     return (
       <>
         <h2 className="text-2xl text-gray-100 mb-4">Base Stats</h2>
-        <div className="poke-stats-container">
+        <div className="lg:grid lg:grid-cols-2">
           <div className="mb-2">
             <h3 className="text-xl text-gray-100">Attack</h3>
             <p className="text-lg">{attack}</p>
@@ -26,7 +26,7 @@ export default class PokemonStats extends Component {
             <p className="text-lg">{spDefense}</p>
           </div>
 
-          <div className="mb-2">
+          <div className="mb-2 lg:col-span-2">
             <h3 className="text-xl text-gray-100">Speed</h3>
             <p className="text-lg">{speed}</p>
           </div>

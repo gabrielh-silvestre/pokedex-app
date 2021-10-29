@@ -22,21 +22,21 @@ export default class PokemonForces extends Component {
 
     return (
       <>
-        <section className="mb-8">
+        <section className="mb-8 lg:w-full">
           <h3 className="text-xl text-center mb-2">Type</h3>
           <div className="flex flex-wrap justify-around">
             <PokemonTypes types={types} />
           </div>
         </section>
 
-        <section className="mb-8">
+        <section className="mb-8 lg:w-full">
           <h3 className="text-xl text-center mb-2">Strong Against</h3>
           <div className="flex flex-wrap justify-around">
             <PokemonTypes types={force} />
           </div>
         </section>
 
-        <section className="mb-4">
+        <section className="mb-4 lg:w-full">
           <h3 className="text-xl text-center mb-2">Weak Against</h3>
           <div className="flex flex-wrap justify-around">
             <PokemonTypes types={weakness} />
