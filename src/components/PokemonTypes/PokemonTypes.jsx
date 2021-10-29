@@ -10,7 +10,7 @@ export default class PokemonTypes extends Component {
 
   renderTypes(typesArr) {
     return typesArr.map((type) => (
-      <p className={`${type} py-1 px-5 rounded-xl`} key={type}>
+      <p className={`${type} py-1 px-5 mb-2 rounded-xl`} key={type}>
         {type.replace(/^\w/, (char) => char.toUpperCase())}
       </p>
     ));
