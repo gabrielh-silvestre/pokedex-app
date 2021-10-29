@@ -22,7 +22,7 @@ export default class Header extends Component {
   render() {
     return (
       <header className="bg-red-600 py-4 sticky top-0 lg:py-2">
-        <div className="flex justify-between px-4 mx-auto lg:px-24">
+        <div className="flex justify-between px-4 mx-auto lg:px-24 2xl:w-4/5 2xl:mx-auto">
           <div className="flex items-center">
             <Link to="/">
               <h1 className="text-4xl text-gray-100">Pokedex</h1>
