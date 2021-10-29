@@ -1,0 +1,46 @@
+.pokemon-page-container {
+  margin: auto;
+  width: 90%;
+}
+
+.pokemon-page-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.pokemon-page-title h1{
+  color: #666666;
+  font-size: 2rem;
+}
+
+.pokemon-page-sprite {
+  background-color: #CFCFCF;
+  border-radius: 10px;
+}
+
+.pokemon-page-sprite img{
+  width: 100%;
+}
+
+.pokemon-page-physics section {
+  background-color: #35A7D7;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.pokemon-page-physics p, .pokemon-page-physics h3 {
+  text-align: center;
+}
+
+.pokemon-page-physics p {
+  color: black;
+  font-size: 1.4rem;
+  margin: 1rem 0 2rem;
+}
+
+.pokemon-page-physics h3 {
+  color: #f3f3f3;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
