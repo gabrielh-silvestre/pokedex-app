@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class PokemonImage extends Component {
@@ -9,11 +9,11 @@ export default class PokemonImage extends Component {
       <>
         <img className="w-8/12 sm:w-2/4" src={sprite} alt={name} />
       </>
-    )
+    );
   }
 }
 
 PokemonImage.protoTypes = {
   sprite: PropTypes.string,
   name: PropTypes.string.isRequired,
-}
+};
