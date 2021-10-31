@@ -29,7 +29,7 @@ export default class PokemonForces extends Component {
           </div>
         </section>
 
-        <section className="mb-8 lg:w-full">
+        <section className="mb-8 lg:w-full lg:mx-4">
           <h3 className="text-xl text-center mb-2">Strong Against</h3>
           <div className="flex flex-wrap justify-around">
             <PokemonTypes types={force} />
