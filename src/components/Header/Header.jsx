@@ -19,6 +19,10 @@ export default class Header extends Component {
       : this.setState({ mobileMenu: 'none' });
   }
 
+  componentDidMount() {
+    if (window.innerWidth >= 1024) this.setState({ mobileMenu: 'block' });
+  }
+
   render() {
     return (
       <header className="bg-red-600 py-4 sticky top-0 lg:py-2">
@@ -31,7 +35,10 @@ export default class Header extends Component {
           <div className="lg:hidden">
             <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
           </div>
-          <nav className="bg-red-600 p-4 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static">
+          <nav
+            className="bg-red-600 p-4 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static"
+            style={{ display: this.state.mobileMenu }}
+          >
             <ul className="text-lg text-right text-gray-100 lg:flex">
               <li className="my-2">
                 <a
