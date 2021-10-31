@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 export default class Home extends Component {
   render() {
     return (
-      <main className="bg-gray-50 h-screen">
+      <main className="bg-gray-50 min-h-screen">
         <Header />
         <Pokedex />
       </main>
