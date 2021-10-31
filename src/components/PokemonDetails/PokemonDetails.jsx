@@ -7,12 +7,13 @@ import PokemonForces from '../../components/PokemonForces/PokemonForces';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import { fetchType } from '../../API/fetchAPI';
 import pokemonData from '../../data/PokemonData';
-
+import LoadingSpinner from '../LoadSpinner/LoadSpinner';
 export default class PokemonDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      loading: false,
       sprite: undefined,
       name: undefined,
       height: undefined,
@@ -47,30 +48,34 @@ export default class PokemonDetails extends Component {
   }
 
   async buildState(name) {
-    const infos = await pokemonData(name);
+    this.setState({ loading: true }, async () => {
+      const infos = await pokemonData(name);
 
-    this.setState({
-      sprite: infos.sprite,
-      name: infos.name,
-      height: infos.charact.height,
-      weight: infos.charact.weight,
-      ability: infos.charact.ability,
-      types: infos.types,
-      hp: infos.stats.hp,
-      attack: infos.stats.attack,
-      'special-attack': infos.stats['special-attack'],
-      defense: infos.stats.defense,
-      'special-defense': infos.stats['special-defense'],
-      speed: infos.stats.speed,
-    });
-
-    const { types } = this.state;
-
-    types.forEach((type) => {
-      fetchType(type, (data) => {
-        this.getForces(data);
-        this.getWeakness(data);
+      this.setState({
+        sprite: infos.sprite,
+        name: infos.name,
+        height: infos.charact.height,
+        weight: infos.charact.weight,
+        ability: infos.charact.ability,
+        types: infos.types,
+        hp: infos.stats.hp,
+        attack: infos.stats.attack,
+        'special-attack': infos.stats['special-attack'],
+        defense: infos.stats.defense,
+        'special-defense': infos.stats['special-defense'],
+        speed: infos.stats.speed,
       });
+
+      const { types } = this.state;
+
+      types.forEach((type) => {
+        fetchType(type, (data) => {
+          this.getForces(data);
+          this.getWeakness(data);
+        });
+      });
+
+      this.setState({ loading: false });
     });
   }
 
@@ -81,6 +86,7 @@ export default class PokemonDetails extends Component {
 
   render() {
     const {
+      loading,
       name,
       sprite,
       height,
@@ -94,7 +100,9 @@ export default class PokemonDetails extends Component {
       speed,
     } = this.state;
 
-    return (
+    return loading ? (
+      <LoadingSpinner />
+    ) : (
       <article>
         <div className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24 xl:w-4/5 xl:mx-auto">
           <section className="text-5xl text-center my-4 text-gray-400 sm:row-start-1 sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:mb-0">
