@@ -75,7 +75,7 @@ export default class Header extends Component {
               </li>
             </ul>
           </nav>
-          <div className="absolute right-0 top-20 lg:static lg:flex lg:items-center lg:justify-end lg:col-start-3 lg:w-full" style={{ display: mobileMenu, width: mobileBar }}>
+          <div className="absolute right-0 top-20 overflow-hidden lg:static lg:flex lg:items-center lg:justify-end lg:col-start-3 lg:w-full" style={{ display: mobileMenu, width: mobileBar }}>
             <SearchBar />
           </div>
         </div>
