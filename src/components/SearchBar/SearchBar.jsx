@@ -29,7 +29,27 @@ export default class SearchBar extends Component {
     const { searchTerm, code } = this.state;
 
     if (code === 'Enter') {
-      return <Redirect to={`/pokemon/${searchTerm}`} />;
+      this.setState({ code: '' });
+      return (
+        <>
+          <input
+            className="pl-2 outline-none lg:rounded lg:w-full"
+            type="text"
+            name="pokemon-name-input"
+            id="pokemon-name-input"
+            placeholder="Digite o nome ou id"
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyUp}
+          />
+          <Redirect to={`/pokemon/${searchTerm}`} />
+          <Link to={`/pokemon/${searchTerm}`}>
+            <Button
+              className="px-4 text-lg bg-red-600 text-gray-100 font-bold rounded-md hidden lg:block"
+              btnContent="Search"
+            />
+          </Link>
+        </>
+      );
     }
 
     return (
