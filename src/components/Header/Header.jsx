@@ -11,20 +11,25 @@ export default class Header extends Component {
 
     this.state = {
       mobileMenu: 'none',
+      mobileBar: '183px'
     };
   }
 
   handleMenu(toggled) {
     toggled
-      ? this.setState({ mobileMenu: 'block' })
+      ? this.setState({ mobileMenu: 'flex' })
       : this.setState({ mobileMenu: 'none' });
   }
 
   componentDidMount() {
-    if (window.innerWidth >= 1024) this.setState({ mobileMenu: 'block' });
+    if (window.innerWidth >= 1024) {
+      this.setState({ mobileMenu: 'flex', mobileBar: '' });
+    };
   }
 
   render() {
+    const { mobileBar, mobileMenu } = this.state;
+
     return (
       <header className="bg-red-600 py-4 sticky top-0 lg:py-2">
         <div className="flex justify-between px-4 mx-auto lg:px-24 xl:w-4/5 xl:mx-auto lg:grid">
@@ -37,8 +42,8 @@ export default class Header extends Component {
             <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
           </div>
           <nav
-            className="bg-red-600 p-4 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static lg:col-start-2 lg:mx-8"
-            style={{ display: this.state.mobileMenu }}
+            className="bg-red-600 p-4 pt-5 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static lg:col-start-2 lg:mx-8"
+            style={{ display: mobileMenu }}
           >
             <ul className="text-lg text-right text-gray-100 lg:flex">
               <li className="my-2">
@@ -70,7 +75,7 @@ export default class Header extends Component {
               </li>
             </ul>
           </nav>
-          <div className="lg:flex lg:items-center lg:justify-end lg:col-start-3">
+          <div className="absolute right-0 top-20 lg:static lg:flex lg:items-center lg:justify-end lg:col-start-3 lg:w-full" style={{ display: mobileMenu, width: mobileBar }}>
             <SearchBar />
           </div>
         </div>

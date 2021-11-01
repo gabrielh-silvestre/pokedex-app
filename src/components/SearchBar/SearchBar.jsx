@@ -35,7 +35,7 @@ export default class SearchBar extends Component {
     return (
       <>
         <input
-          className="pl-2 rounded w-full"
+          className="pl-2 outline-none lg:rounded lg:w-full"
           type="text"
           name="pokemon-name-input"
           id="pokemon-name-input"
@@ -45,7 +45,7 @@ export default class SearchBar extends Component {
         />
         <Link to={`/pokemon/${searchTerm}`}>
           <Button
-            className="px-4 text-lg bg-red-600 text-gray-100 font-bold rounded-md"
+            className="px-4 text-lg bg-red-600 text-gray-100 font-bold rounded-md hidden lg:block"
             btnContent="Search"
           />
         </Link>
