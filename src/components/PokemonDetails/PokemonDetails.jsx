@@ -84,6 +84,10 @@ export default class PokemonDetails extends Component {
     this.buildState(pokemon);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.pokemon !== this.props.pokemon) this.buildState(this.props.pokemon)
+  }
+
   render() {
     const {
       loading,

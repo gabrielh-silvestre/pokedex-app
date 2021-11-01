@@ -93,7 +93,7 @@ export default class Container extends Component {
           .map((pokemon) => this.renderPokeCard(pokemon))}
 
         <div className="flex justify-center pb-8 sm:col-span-full lg:hidden">
-          <Button btnContent="Carregar mais" callback={this.getMultPokemons} />
+          <Button className="py-2 px-4 text-lg bg-red-600 text-gray-100 font-bold rounded-md" btnContent="Carregar mais" callback={this.getMultPokemons} />
         </div>
       </article>
     );
