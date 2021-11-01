@@ -42,7 +42,7 @@ export default class Header extends Component {
             <Hamburger color="#f0f0f0" size="28" onToggle={this.handleMenu} />
           </div>
           <nav
-            className="bg-red-600 p-4 pt-5 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static lg:col-start-2 lg:mx-8"
+            className="bg-red-600 p-4 pt-7 absolute right-0 top-20 rounded-bl-lg hidden lg:flex lg:items-center lg:static lg:col-start-2 lg:pt-4 lg:mx-8"
             style={{ display: mobileMenu }}
           >
             <ul className="text-lg text-right text-gray-100 lg:flex">

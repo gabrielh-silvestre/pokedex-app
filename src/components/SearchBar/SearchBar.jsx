@@ -36,7 +36,7 @@ export default class SearchBar extends Component {
       return (
         <>
           <input
-            className="pl-2 outline-none lg:rounded lg:w-full"
+            className="pl-2 outline-none py-1 lg:py-0 lg:rounded lg:w-full"
             type="text"
             name="pokemon-name-input"
             id="pokemon-name-input"
@@ -58,7 +58,7 @@ export default class SearchBar extends Component {
     return (
       <>
         <input
-          className="pl-2 outline-none lg:rounded lg:w-full"
+          className="pl-2 outline-none py-1 lg:py-0 lg:rounded lg:w-full"
           type="text"
           name="pokemon-name-input"
           id="pokemon-name-input"
