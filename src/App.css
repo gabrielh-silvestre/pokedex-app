@@ -90,3 +90,12 @@
   background: linear-gradient(180deg, rgba(83,164,207,1) 50%, rgba(241,110,87,1) 50%);
   color: white;
 }
+
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
