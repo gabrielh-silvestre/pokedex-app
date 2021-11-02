@@ -10,7 +10,7 @@ export default class PokeCard extends Component {
     const { sprite, id, name, types } = this.props.pokemon;
 
     return (
-      <section className="flex flex-col items-center shadow-sm w-4/5 w-full mx-auto my-8 rounded">
+      <section className="flex flex-col items-center shadow-sm w-4/5 w-full mx-auto my-8 rounded hover:shadow-xl duration-200">
         <Link to={`/pokemon/${id}`} className="w-full" >
           <div className="flex items-center justify-center bg-gray-200 w-full h-40 rounded-t p-8 2xl:h-auto">
             <PokemonImage sprite={sprite} name={name} />
