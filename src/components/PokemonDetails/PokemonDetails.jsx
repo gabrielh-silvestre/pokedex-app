@@ -8,6 +8,8 @@ import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import { fetchType } from '../../API/fetchAPI';
 import pokemonData from '../../data/PokemonData';
 import LoadingSpinner from '../LoadSpinner/LoadSpinner';
+import Arrows from '../Arrows/Arrows';
+
 export default class PokemonDetails extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,7 @@ export default class PokemonDetails extends Component {
 
       this.setState({
         sprite: infos.sprite,
+        id: infos.id,
         name: infos.name,
         height: infos.charact.height,
         weight: infos.charact.weight,
@@ -85,12 +88,14 @@ export default class PokemonDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.pokemon !== this.props.pokemon) this.buildState(this.props.pokemon)
+    if (prevProps.pokemon !== this.props.pokemon)
+      this.buildState(this.props.pokemon);
   }
 
   render() {
     const {
       loading,
+      id,
       name,
       sprite,
       height,
@@ -107,8 +112,9 @@ export default class PokemonDetails extends Component {
     return loading ? (
       <LoadingSpinner />
     ) : (
-      <article>
-        <div className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24 xl:w-4/5 xl:mx-auto">
+      <article className="grid pb-8 lg:flex">
+        <Arrows arrow="left" actualPokemon={id} className="flex items-center row-start-3" />
+        <div className="px-4 col-span-2 sm:grid sm:grid-cols-2 sm:gap-4 lg:px-24 xl:w-4/5 xl:mx-auto">
           <section className="text-5xl text-center my-4 text-gray-400 sm:row-start-1 sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:mb-0">
             <h1>
               <PokemonName name={name} />
@@ -141,6 +147,7 @@ export default class PokemonDetails extends Component {
             />
           </section>
         </div>
+        <Arrows arrow="right" actualPokemon={id} className="flex items-center justify-end row-start-3" />
       </article>
     );
   }
