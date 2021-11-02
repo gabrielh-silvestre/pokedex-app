@@ -31,7 +31,7 @@ export default class Header extends Component {
     const { mobileBar, mobileMenu } = this.state;
 
     return (
-      <header className="bg-red-600 py-4 sticky top-0 lg:py-2">
+      <header className="bg-red-600 z-20 py-4 sticky top-0 lg:py-2">
         <div className="flex justify-between px-4 mx-auto lg:px-24 xl:w-4/5 xl:mx-auto lg:grid">
           <div className="flex items-center lg:col-start-1 lg:w-min">
             <Link to="/">

@@ -80,7 +80,7 @@ export default class Container extends Component {
             <b>Yay! You have seen it all</b>
           </p>
         }
-        className="px-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
+        className="px-4 z-0 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
       >
         {savedPokemons
           .sort((a, b) => a.id - b.id)
