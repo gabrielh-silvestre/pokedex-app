@@ -72,6 +72,7 @@ export default class Container extends Component {
       <InfiniteScroll
         dataLength={savedPokemons.length}
         next={this.getMultPokemons}
+        scrollThreshold={0.9}
         hasMore={true}
         loader={<LoadSpinner />}
         endMessage={
