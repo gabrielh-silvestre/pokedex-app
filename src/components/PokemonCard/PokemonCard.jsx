@@ -10,27 +10,27 @@ export default class PokeCard extends Component {
     const { sprite, id, name, types } = this.props.pokemon;
 
     return (
-      <Link to={`/pokemon/${id}`}>
-        <section className="flex flex-col items-center shadow-sm w-4/5 w-full mx-auto my-8 rounded">
+      <section className="flex flex-col items-center shadow-sm w-4/5 w-full mx-auto my-8 rounded">
+        <Link to={`/pokemon/${id}`} className="w-full" >
           <div className="flex items-center justify-center bg-gray-200 w-full h-40 rounded-t p-8 2xl:h-auto">
             <PokemonImage sprite={sprite} name={name} />
           </div>
+        </Link>
 
-          <div className="flex flex-col p-4 w-full text-sm">
-            <div className="text-gray-400 mb-2">
-              <p>Nº {id}</p>
-            </div>
-            <div className="text-gray-600 mb-2 text-xl">
-              <h4>
-                <PokemonName name={name} />
-              </h4>
-            </div>
-            <div className="flex justify-around my-2 text-xs">
-              <PokemonTypes types={types} />
-            </div>
+        <div className="flex flex-col p-4 w-full text-sm">
+          <div className="text-gray-400 mb-2">
+            <p>Nº {id}</p>
           </div>
-        </section>
-      </Link>
+          <div className="text-gray-600 mb-2 text-xl">
+            <h4>
+              <PokemonName name={name} />
+            </h4>
+          </div>
+          <div className="flex justify-around my-2 text-xs">
+            <PokemonTypes types={types} />
+          </div>
+        </div>
+      </section>
     );
   }
 }
