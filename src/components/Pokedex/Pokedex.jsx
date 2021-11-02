@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PokeCard from '../PokemonCard/PokemonCard';
-import Button from '../Button/Button';
 import pokemonData from '../../data/PokemonData';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -85,14 +84,6 @@ export default class Container extends Component {
         {savedPokemons
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => this.renderPokeCard(pokemon))}
-
-        <div className="flex justify-center pb-8 sm:col-span-full lg:hidden">
-          <Button
-            className="py-2 px-4 text-lg bg-red-600 text-gray-100 font-bold rounded-md"
-            btnContent="Carregar mais"
-            callback={this.getMultPokemons}
-          />
-        </div>
       </InfiniteScroll>
     );
   }
