@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class PokemonImage extends Component {
-  render() {
-    const { sprite, name } = this.props;
-
-    return (
-      <>
-        <img className="w-8/12 sm:w-2/4" src={sprite} alt={name} />
-      </>
-    );
-  }
+export default function PokemonImage({ sprite, name }) {
+  return <img className="w-8/12 sm:w-2/4" src={sprite} alt={name} />;
 }
 
 PokemonImage.protoTypes = {
