@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function PokemonName({ name }) {
-  return name;
+  return <>{name}</>;
 }
 
 PokemonName.protoTypes = {
