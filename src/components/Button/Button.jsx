@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-  render() {
-    const { callback, btnContent, className } = this.props;
-    return (
-      <>
-        <button className={className} onClick={callback}>{btnContent}</button>
-      </>
-    );
-  }
+export default function Button({ callback, btnContent, className }) {
+  return (
+    <button className={className} onClick={callback}>
+      {btnContent}
+    </button>
+  );
 }
 
 Button.protoTypes = {
+  className: PropTypes.string.isRequired,
   btnContent: PropTypes.string.isRequired,
   callback: PropTypes.func,
-}
+};
