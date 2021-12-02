@@ -1,91 +1,64 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PokeCard from '../PokemonCard/PokemonCard';
 import pokemonData from '../../data/PokemonData';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
-export default class Container extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      savedPokemons: [],
-      loading: true,
-      lastPokemon: 1,
-      manyPokemons: 24,
-    };
+export default function Pokedex(props) {
+  const [savedPokemons, setSavedPokemons] = useState([]);
+  const [lastPokemon, setLastPokemon] = useState(1);
+  const [manyPokemons, setManyPokemons] = useState(24);
 
-    this.cardConstructor = this.cardConstructor.bind(this);
-    this.getPokemon = this.getPokemon.bind(this);
-    this.getMultPokemons = this.getMultPokemons.bind(this);
-  }
-
-  cardConstructor({ id, name, sprite, types }) {
+  const cardConstructor = ({ id, name, sprite, types }) => {
     return {
       id,
       name,
       sprite,
       types,
     };
-  }
+  };
 
-  savePokemon() {
-    this.setState(({ savedPokemons, newPokemon }) => ({
-      savedPokemons: [...savedPokemons, newPokemon],
-    }));
-  }
-
-  async getPokemon(id) {
-    this.setState({ loading: true }, async () => {
-      const pokemonObj = await pokemonData(id);
-      this.setState((prev) => ({
-        loading: false,
-        savedPokemons: [
-          ...prev.savedPokemons,
-          this.cardConstructor(pokemonObj),
-        ],
-      }));
-    });
-  }
-
-  async getMultPokemons() {
-    const { lastPokemon, manyPokemons } = this.state;
+  const getMultPokemons = () => {
     for (let i = lastPokemon; i <= manyPokemons; i += 1) {
-      await this.getPokemon(i);
-      this.setState((prev) => ({
-        lastPokemon: prev.lastPokemon + 1,
-        manyPokemons: prev.manyPokemons + 1,
-      }));
+      getPokemon(i);
+
+      setLastPokemon((prev) => (prev += 1));
+      setManyPokemons((prev) => (prev += 1));
     }
-  }
+  };
 
-  componentDidMount() {
-    this.getMultPokemons();
-  }
+  const getPokemon = async (id) => {
+    const pokemonObj = await pokemonData(id);
+    setSavedPokemons((prevSaved) => [
+      ...prevSaved,
+      cardConstructor(pokemonObj),
+    ]);
+  };
 
-  renderPokeCard(pokemonObj) {
-    return <PokeCard key={pokemonObj.name} pokemon={pokemonObj} />;
-  }
+  useEffect(() => {
+    getMultPokemons();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  render() {
-    const { savedPokemons } = this.state;
-    return (
-      <InfiniteScroll
-        dataLength={savedPokemons.length}
-        next={this.getMultPokemons}
-        scrollThreshold={0.9}
-        hasMore={true}
-        loader={<LoadSpinner />}
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-        className="px-4 z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
-      >
-        {savedPokemons
-          .sort((a, b) => a.id - b.id)
-          .map((pokemon) => this.renderPokeCard(pokemon))}
-      </InfiniteScroll>
-    );
-  }
+  return (
+    <InfiniteScroll
+      dataLength={savedPokemons.length}
+      next={getMultPokemons}
+      scrollThreshold={0.9}
+      hasMore={true}
+      loader={<LoadSpinner />}
+      endMessage={
+        <p style={{ textAlign: 'center' }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+      className="px-4 z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
+    >
+      {savedPokemons
+        .sort((a, b) => a.id - b.id)
+        .map((pokemon) => (
+          <PokeCard key={pokemon.name} pokemon={pokemon} />
+        ))}
+    </InfiniteScroll>
+  );
 }
