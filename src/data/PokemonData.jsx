@@ -1,4 +1,4 @@
-import { fetchPokemon } from '../API/fetchAPI';
+import { fetchPokemon } from '../services';
 
 const capitalizeString = (str) =>
   str.replace(/^\w/, (char) => char.toUpperCase());

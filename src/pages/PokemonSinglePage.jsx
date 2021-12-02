@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../components/Header/Header';
-import PokemonDetails from '../../components/PokemonDetails/PokemonDetails';
+import Header from '../components/Header';
+import PokemonDetails from '../components/PokemonDetails';
 
 export default function PokemonSinglePage({ match: { params } }) {
   return (

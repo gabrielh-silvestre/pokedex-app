@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Button from '../Button/Button';
+import Button from './Button';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');

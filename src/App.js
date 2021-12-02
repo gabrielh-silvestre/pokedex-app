@@ -1,7 +1,8 @@
 import './App.css';
-import Home from './pages/Home/Home';
-import PokemonSinglePage from './pages/PokemonSinglePage/PokemonSinglePage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Home from './pages/Home';
+import PokemonSinglePage from './pages/PokemonSinglePage';
 
 function App() {
   return (

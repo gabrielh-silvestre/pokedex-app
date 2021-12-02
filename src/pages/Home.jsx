@@ -1,6 +1,6 @@
 import React from 'react';
-import Pokedex from '../../components/Pokedex/Pokedex';
-import Header from '../../components/Header/Header';
+import Pokedex from '../components/Pokedex';
+import Header from '../components/Header';
 
 export default function Home() {
   return (

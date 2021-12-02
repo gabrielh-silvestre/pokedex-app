@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PokemonTypes from '../PokemonTypes/PokemonTypes';
+import PokemonTypes from './PokemonTypes';
 
 export default function PokemonForces({ types, force, weakness }) {
   return (

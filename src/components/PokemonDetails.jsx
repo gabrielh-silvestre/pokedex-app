@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PokemonImage from '../../components/PokemonImage/PokemonImage';
-import PokemonName from '../../components/PokemonName/PokemonName';
-import PokemonPhysical from '../../components/PokemonPhysical/PokemonPhysical';
-import PokemonForces from '../../components/PokemonForces/PokemonForces';
-import PokemonStats from '../../components/PokemonStats/PokemonStats';
-import { fetchType } from '../../API/fetchAPI';
-import pokemonData from '../../data/PokemonData';
-import LoadingSpinner from '../LoadSpinner/LoadSpinner';
-import Arrows from '../Arrows/Arrows';
+import { fetchType } from '../services';
+
+import PokemonImage from './PokemonImage';
+import PokemonName from './PokemonName';
+import PokemonPhysical from './PokemonPhysical';
+import PokemonForces from './PokemonForces';
+import PokemonStats from './PokemonStats';
+import Arrows from './Arrows';
+import LoadingSpinner from './LoadSpinner/LoadSpinner';
+
+import pokemonData from '../data/PokemonData';
 
 export default class PokemonDetails extends Component {
   constructor(props) {

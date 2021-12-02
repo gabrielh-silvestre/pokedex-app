@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import PokeCard from '../PokemonCard/PokemonCard';
-import pokemonData from '../../data/PokemonData';
-import LoadSpinner from '../LoadSpinner/LoadSpinner';
+import PokeCard from './PokemonCard';
+import pokemonData from '../data/PokemonData';
+import LoadSpinner from './LoadSpinner/LoadSpinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Pokedex(props) {

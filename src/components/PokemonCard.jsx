@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import PokemonName from '../PokemonName/PokemonName';
-import PokemonImage from '../PokemonImage/PokemonImage';
-import PokemonTypes from '../PokemonTypes/PokemonTypes';
+import PokemonName from './PokemonName';
+import PokemonImage from './PokemonImage';
+import PokemonTypes from './PokemonTypes';
 
 export default function PokeCard({ pokemon: { sprite, id, name, types } }) {
   return (
