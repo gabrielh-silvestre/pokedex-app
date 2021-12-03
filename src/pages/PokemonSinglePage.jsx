@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { fetchPokemon } from '../services';
 
-import Header from '../components/Header';
 import LoadSpinner from '../components/LoadSpinner/LoadSpinner';
 import PokemonDetails from '../components/PokemonDetails';
 
@@ -26,7 +25,6 @@ export default function PokemonSinglePage({ match: { params } }) {
 
   return (
     <div>
-      <Header />
       {loading ? (
         <LoadSpinner />
       ) : (
