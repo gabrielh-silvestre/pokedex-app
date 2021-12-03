@@ -1,88 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LeftArrow from './icons/LeftArrow';
+import RightArrow from './icons/RightArrow';
 
-export default class Arrows extends Component {
-  constructor(props) {
-    super(props);
+export default function Arrows({ actualPokemon, arrow, className }) {
+  const [next, setNext] = useState(0);
+  const [previous, setPrevious] = useState(0);
 
-    this.state = {
-      leftArrow: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-20 w-20 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      ),
-      rightArrow: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-20 w-20 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      ),
-      nextPokemon: undefined,
-      prevPokemon: undefined,
-    };
+  useEffect(() => {
+    setNextPokemon();
+    setPrevPokemon();
 
-    this.setNextPokemon = this.setNextPokemon.bind(this);
-    this.setPrevPokemon = this.setPrevPokemon.bind(this);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actualPokemon]);
 
-  setNextPokemon() {
-    const { actualPokemon } = this.props;
-    this.setState(() => {
-      if (actualPokemon < 898) {
-        return { nextPokemon: actualPokemon + 1 };
-      }
-      return { nextPokemon: actualPokemon };
-    });
-  }
+  const setNextPokemon = () => {
+    if (actualPokemon < 898) {
+      setNext(actualPokemon + 1);
+    } else {
+      setNext(actualPokemon);
+    }
+  };
 
-  setPrevPokemon() {
-    const { actualPokemon } = this.props;
-    this.setState(() => {
-      if (actualPokemon > 1) {
-        return { prevPokemon: actualPokemon - 1 };
-      }
-      return { prevPokemon: actualPokemon };
-    });
-  }
+  const setPrevPokemon = () => {
+    if (actualPokemon > 1) {
+      setPrevious(actualPokemon - 1);
+    } else {
+      setPrevious(actualPokemon);
+    }
+  };
 
-  componentDidMount() {
-    this.setNextPokemon();
-    this.setPrevPokemon();
-  }
-
-  render() {
-    const { arrow, className } = this.props;
-    const { rightArrow, leftArrow, nextPokemon, prevPokemon } = this.state;
-
-    return arrow === 'right' ? (
-      <Link className={className} to={`/pokemon/${nextPokemon}`}>
-        {rightArrow}
-      </Link>
-    ) : (
-      <Link className={className} to={`/pokemon/${prevPokemon}`}>
-        {leftArrow}
-      </Link>
-    );
-  }
+  return arrow === 'right' ? (
+    <Link className={className} to={`/pokemon/${next}`}>
+      <RightArrow />
+    </Link>
+  ) : (
+    <Link className={className} to={`/pokemon/${previous}`}>
+      <LeftArrow />
+    </Link>
+  );
 }
