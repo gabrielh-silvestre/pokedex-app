@@ -25,6 +25,8 @@ export default function PokemonDetails({ pokemon }) {
   const getStats = (statName) =>
     stats.find(({ stat: { name } }) => name === statName);
 
+  const typeNames = types.flatMap(({ type: { name } }) => name);
+
   return (
     <article className="grid pb-8 lg:flex">
       <Arrows
@@ -52,7 +54,7 @@ export default function PokemonDetails({ pokemon }) {
         </section>
 
         <section className="bg-gray-200 my-4 p-4 rounded-lg sm:col-start-2 sm:flex sm:flex-col sm:justify-between lg:flex-row lg:row-start-4 lg:col-span-2">
-          {/* <PokemonForces types={types} force={force} weakness={weakness} /> */}
+          <PokemonForces types={typeNames} />
         </section>
 
         <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3 lg:col-span-2">
