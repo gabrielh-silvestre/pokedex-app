@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 
 import PokeCard from './PokemonCard';
 import LoadSpinner from './LoadSpinner/LoadSpinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { addPokemon } from '../actions';
+import { fetchPokemon } from '../services';
 
-function Pokedex({
-  addPokemon,
-  allPokemons: { pokemons, lastPokemon, manyPokemons },
-}) {
+export default function Pokedex() {
+  const [lastPokemon, setLastPokemon] = useState(1);
+  const [manyPokemons, setManyPokemons] = useState(24);
+  const [pokemons, setPokemons] = useState([]);
 
   const getMultPokemons = () => {
     for (let i = lastPokemon; i <= manyPokemons; i += 1) {
       addPokemon(i);
     }
+    setLastPokemon((prev) => prev += 24);
+    setManyPokemons((prev) => prev += 24);
   };
+
+  const addPokemon = async (pokemonId) => {
+    const newPokemon = await fetchPokemon(pokemonId);
+    setPokemons((prev) => [...prev, newPokemon]);
+  }
 
   useEffect(() => {
     getMultPokemons();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,13 +51,3 @@ function Pokedex({
     </InfiniteScroll>
   );
 }
-
-const mapStateToProps = (state) => ({
-  allPokemons: state.allPokemons,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addPokemon: (pokemonId) => dispatch(addPokemon(pokemonId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Pokedex);
