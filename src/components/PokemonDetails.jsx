@@ -60,7 +60,7 @@ export default function PokemonDetails({ pokemon }) {
         <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3 lg:col-span-2">
           <PokemonStats
             attack={getStats('attack')?.base_stat}
-            spAttack={getStats('special-attack"')?.base_stat}
+            spAttack={getStats('special-attack')?.base_stat}
             defense={getStats('defense')?.base_stat}
             spDefense={getStats('special-defense')?.base_stat}
             speed={getStats('speed')?.base_stat}
