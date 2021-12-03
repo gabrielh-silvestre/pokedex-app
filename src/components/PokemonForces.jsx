@@ -5,6 +5,7 @@ import { getDmgRelations } from '../services';
 import PokemonTypes from './PokemonTypes';
 
 export default function PokemonForces({ types }) {
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(true);
   const [advantageNames, setAdvantageNames] = useState([]);
   const [disadvantageNames, setDisadvantageNames] = useState([]);
