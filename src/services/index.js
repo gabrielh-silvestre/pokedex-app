@@ -13,3 +13,12 @@ export async function fetchType(type) {
 export function capitalizeString(str) {
   return str.replace(/^\w/, (char) => char.toUpperCase());
 }
+
+export async function getDmgRelations(type) {
+  const data = await fetchType(type);
+
+  return {
+    advantage: data.damage_relations.double_damage_to,
+    disadvantage: data.damage_relations.double_damage_from,
+  };
+}
