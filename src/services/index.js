@@ -1,13 +1,13 @@
-export async function fetchPokemon(pokemon, callback) {
+export async function fetchPokemon(pokemon) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
   const data = await res.json();
-  return callback(data);
+  return data;
 }
 
-export async function fetchType(type, callback) {
+export async function fetchType(type) {
   const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
   const data = await res.json();
-  return callback(data);
+  return data;
 }
 
 export function capitalizeString(str) {
