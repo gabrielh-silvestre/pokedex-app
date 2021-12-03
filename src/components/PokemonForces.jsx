@@ -1,56 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import PokemonTypes from './PokemonTypes';
-import { connect } from 'react-redux';
-import { changeRelation, getTypeRelations } from '../actions';
+import { getDmgRelations } from '../services';
 
-function PokemonForces({
-  types,
-  typesRelation: { advantage, disadvantage },
-  changeRelation,
-  getTypeRelations,
-}) {
+import PokemonTypes from './PokemonTypes';
+
+export default function PokemonForces({ types }) {
+  const [loading, setLoading] = useState(true);
   const [advantageNames, setAdvantageNames] = useState([]);
-  const [disadvantageName, setDisadvantageName] = useState([]);
+  const [disadvantageNames, setDisadvantageNames] = useState([]);
 
   useEffect(() => {
     types.forEach((typeName) => {
-      getTypeRelations(typeName);
+      getAllRelations(typeName);
     });
 
-    return () => {
-      changeRelation();
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getTypesName = (typesArr) => typesArr.flatMap(({ name }) => name);
+  const getAllRelations = async (typeName) => {
+    setLoading(true);
 
-  const removeNeutral = () => {
-    const ad = getTypesName(advantage);
-    const disad = getTypesName(disadvantage);
-    const neutrals = ad.filter(
-      (type) => ad.includes(type) && disad.includes(type)
-    );
+    const { advantage, disadvantage } = await getDmgRelations(typeName);
+    setAdvantageNames(getTypesName([...advantage]));
+    setDisadvantageNames(getTypesName([...disadvantage]));
 
-    return neutrals;
+    setLoading(false);
   };
 
-  useEffect(() => {
-    const neutrals = removeNeutral();
-    const advantageSet = new Set(getTypesName(advantage));
-    const disadvantageSet = new Set(getTypesName(disadvantage));
-
-    neutrals.forEach((n) => {
-      advantageSet.delete(n);
-      disadvantageSet.delete(n);
-    });
-
-    setAdvantageNames([...advantageSet]);
-    setDisadvantageName([...disadvantageSet]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [advantage, disadvantage]);
+  const getTypesName = (typesArr) => typesArr.map(({ name }) => name);
 
   return (
     <>
@@ -71,7 +48,7 @@ function PokemonForces({
       <section className="mb-4 lg:w-full">
         <h3 className="text-xl text-center mb-2">Weak Against</h3>
         <div className="flex flex-wrap justify-around">
-          <PokemonTypes types={disadvantageName} />
+          <PokemonTypes types={disadvantageNames} />
         </div>
       </section>
     </>
@@ -83,15 +60,3 @@ PokemonForces.protoTypes = {
   force: PropTypes.arrayOf(PropTypes.string),
   weakness: PropTypes.arrayOf(PropTypes.string),
 };
-
-const mapStateToProps = (state) => ({
-  typesRelation: state.typesRelation,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeRelation: () => dispatch(changeRelation()),
-  getTypeRelations: (typeName, advantage) =>
-    dispatch(getTypeRelations(typeName, advantage)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonForces);
