@@ -5,7 +5,16 @@ import PokemonName from './PokemonName';
 import PokemonImage from './PokemonImage';
 import PokemonTypes from './PokemonTypes';
 
-export default function PokeCard({ pokemon: { sprites: { front_default }, id, name, types } }) {
+export default function PokeCard({
+  pokemon: {
+    sprites: { front_default },
+    id,
+    name,
+    types,
+  },
+}) {
+  const typeNames = types.flatMap(({ type: { name } }) => name);
+
   return (
     <section className="flex flex-col items-center shadow-sm w-full mx-auto my-8 rounded hover:shadow-xl duration-200">
       <Link to={`/pokemon/${id}`} className="w-full">
@@ -24,7 +33,7 @@ export default function PokeCard({ pokemon: { sprites: { front_default }, id, na
           </h4>
         </div>
         <div className="flex justify-around my-2 text-xs">
-          <PokemonTypes types={types} />
+          <PokemonTypes types={typeNames} />
         </div>
       </div>
     </section>
