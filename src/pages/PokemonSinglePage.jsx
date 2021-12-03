@@ -1,39 +1,37 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getPokemon } from '../actions';
+import React, { useEffect, useState } from 'react';
+
+import { fetchPokemon } from '../services';
+
 import Header from '../components/Header';
 import LoadSpinner from '../components/LoadSpinner/LoadSpinner';
 import PokemonDetails from '../components/PokemonDetails';
 
-function PokemonSinglePage({
-  match: { params },
-  pokemonInfo: { pokemon, isLoading },
-  getPokemon,
-}) {
+export default function PokemonSinglePage({ match: { params } }) {
+  const [loading, setLoading] = useState(true);
+  const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    getPokemon(params.pokemonName);
+    getPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getPokemon = async () => {
+    setLoading(true);
+
+    const newPokemon = await fetchPokemon(params.pokemonName);
+    setPokemon(newPokemon);
+
+    setLoading(false);
+  };
 
   return (
     <div>
       <Header />
-      {isLoading ? (
+      {loading ? (
         <LoadSpinner />
       ) : (
-        <PokemonDetails pokemon={pokemon} loading={isLoading} />
+        <PokemonDetails pokemon={pokemon} />
       )}
     </div>
   );
 }
-
-const mapStateToProps = (state) => ({
-  pokemonInfo: state.singlePokemon,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getPokemon: (pokemonId) => dispatch(getPokemon(pokemonId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonSinglePage);
