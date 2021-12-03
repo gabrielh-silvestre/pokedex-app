@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import allPokemons from "./allPokemonsReducer";
-import singlePokemon from "./singlePokemonReducer";
+import singlePokemon from './singlePokemonReducer';
+import typesRelation from './typesReducer';
 
-const rootReducer = combineReducers({ allPokemons, singlePokemon });
+const rootReducer = combineReducers({ singlePokemon, typesRelation });
 
 export default rootReducer;
