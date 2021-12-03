@@ -1,16 +1,23 @@
 import './App.css';
-import Home from './pages/Home/Home';
-import PokemonSinglePage from './pages/PokemonSinglePage/PokemonSinglePage';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import Home from './pages/Home';
+import PokemonSinglePage from './pages/PokemonSinglePage';
+import Header from './components/Header';
 
 function App() {
   return (
-    <BrowserRouter>
+    <div>
+      <Header />
+
       <Switch>
-        <Route path="/pokemon/:pokemonName" render={(props) => <PokemonSinglePage {...props}/>} />
+        <Route
+          path="/pokemon/:pokemonName"
+          render={(props) => <PokemonSinglePage {...props} />}
+        />
         <Route path="/" component={Home} />
       </Switch>
-    </BrowserRouter>
+    </div>
   );
 }
 
