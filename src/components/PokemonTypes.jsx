@@ -5,9 +5,9 @@ import { capitalizeString } from '../services';
 
 export default function PokemonTypes({ types }) {
   const renderTypes = (typesArr) =>
-    typesArr.map(({ type: { name } }) => (
-      <p className={`${name} py-1 px-5 mb-2 rounded-xl lg:mx-2`} key={name}>
-        {capitalizeString(name)}
+    typesArr.map((typeName) => (
+      <p className={`${typeName} py-1 px-5 mb-2 rounded-xl lg:mx-2`} key={typeName}>
+        {capitalizeString(typeName)}
       </p>
     ));
 
