@@ -12,7 +12,7 @@ export default function PokemonSinglePage({ match: { params } }) {
   useEffect(() => {
     getPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params.pokemonName]);
 
   const getPokemon = async () => {
     setLoading(true);
