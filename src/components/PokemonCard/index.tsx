@@ -4,7 +4,7 @@ import { Pokemon as PokemonCardProps } from 'pokenode-ts';
 
 import PokemonImage from '../PokemonImage';
 import PokemonName from '../PokemonName';
-import PokemonTypes from '../PokemonTypes';
+import { PokemonTypes } from '../PokemonTypes';
 
 export function PokemonCard({
   sprites: { front_default },
@@ -12,7 +12,6 @@ export function PokemonCard({
   name,
   types,
 }: PokemonCardProps) {
-  const typeNames = types.flatMap(({ type: { name } }) => name);
 
   return (
     <section className="flex flex-col items-center shadow-sm w-full mx-auto my-8 rounded hover:shadow-xl duration-200">
@@ -32,7 +31,7 @@ export function PokemonCard({
           </h4>
         </div>
         <div className="flex justify-around my-2 text-xs">
-          <PokemonTypes types={typeNames} />
+          <PokemonTypes types={types} />
         </div>
       </div>
     </section>
