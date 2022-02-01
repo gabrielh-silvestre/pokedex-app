@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Turn as Hamburger } from 'hamburger-react';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import { SearchBar } from './SearchBar';
 
 export default function Header(props) {
   const [mobileMenu, setMobileMenu] = useState('flex');
