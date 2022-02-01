@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import PokemonSinglePage from './pages/PokemonSinglePage';
-import Header from './components/Header';
+import { Header } from './components/Header';
 
 function App() {
   return (
