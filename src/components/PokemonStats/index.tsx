@@ -8,8 +8,8 @@ export function PokemonStats({ stats }: PokemonStatsProps) {
     <>
       <h2 className="text-2xl text-gray-100 mb-4">Base Stats</h2>
       <div className="lg:grid lg:grid-cols-2">
-        {stats.map(({ stat, base_stat }) => (
-          <div className="mb-2">
+        {stats.map(({ stat, base_stat }, i) => (
+          <div key={i} className="mb-2">
             <h3 className="text-xl text-gray-100">
               {capitalizeString(stat.name)}
             </h3>
