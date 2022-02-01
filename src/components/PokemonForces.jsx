@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getDmgRelations } from '../services';
 
-import PokemonTypes from './PokemonTypes';
+import { PokemonTypes } from './PokemonTypes';
 
 export default function PokemonForces({ types }) {
   // eslint-disable-next-line no-unused-vars
