@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { PokemonClient } from 'pokenode-ts';
+import { Pokemon, PokemonClient } from 'pokenode-ts';
 
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
 import PokemonDetails from '../../components/PokemonDetails';
@@ -11,7 +11,7 @@ type SinglePokemonParams = {
 
 export function PokemonSinglePage() {
   const [loading, setLoading] = useState(true);
-  const [pokemon, setPokemon] = useState({});
+  const [pokemon, setPokemon] = useState<Pokemon>({} as Pokemon);
   const { pokemonId } = useParams<SinglePokemonParams>();
 
   const getPokemon = useCallback(async () => {
