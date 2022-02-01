@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Pokemon, PokemonClient } from 'pokenode-ts';
 
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
-import PokemonDetails from '../../components/PokemonDetails';
+import { PokemonDetails } from '../../components/PokemonDetails';
 
 type SinglePokemonParams = {
   pokemonId: string;
