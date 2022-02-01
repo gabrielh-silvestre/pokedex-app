@@ -1,19 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Pokemon } from "pokenode-ts";
 
-import PokemonImage from './PokemonImage';
-import PokemonName from './PokemonName';
-import PokemonPhysical from './PokemonPhysical';
-import PokemonForces from './PokemonForces';
-import { PokemonStats } from './PokemonStats';
-import Arrows from './Arrows';
+import PokemonImage from '../PokemonImage';
+import PokemonName from '../PokemonName';
+import PokemonPhysical from '../PokemonPhysical';
+// import PokemonForces from '../PokemonForces';
+import { PokemonStats } from '../PokemonStats';
+import Arrows from '../Arrows';
 
-export default function PokemonDetails({ pokemon }) {
+type PokemonDetailsProps = {
+  pokemon: Pokemon
+}
+
+export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   const {
     id,
     name,
-    types,
     abilities,
+    // types,
     height,
     weight,
     stats,
@@ -21,11 +24,6 @@ export default function PokemonDetails({ pokemon }) {
   } = pokemon;
 
   const getAbility = () => abilities[0].ability.name;
-
-  const getStats = (statName) =>
-    stats.find(({ stat: { name } }) => name === statName);
-
-  const typeNames = types.flatMap(({ type: { name } }) => name);
 
   return (
     <article className="grid pb-8 lg:flex">
@@ -54,17 +52,12 @@ export default function PokemonDetails({ pokemon }) {
         </section>
 
         <section className="bg-gray-200 my-4 p-4 rounded-lg sm:col-start-2 sm:flex sm:flex-col sm:justify-between lg:flex-row lg:row-start-4 lg:col-span-2">
-          <PokemonForces types={typeNames} />
+          {/* <PokemonForces types={typeNames} /> */}
+          Forças
         </section>
 
         <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3 lg:col-span-2">
-          <PokemonStats
-            attack={getStats('attack')?.base_stat}
-            spAttack={getStats('special-attack')?.base_stat}
-            defense={getStats('defense')?.base_stat}
-            spDefense={getStats('special-defense')?.base_stat}
-            speed={getStats('speed')?.base_stat}
-          />
+          <PokemonStats stats={ stats } />
         </section>
       </div>
       <Arrows
@@ -75,7 +68,3 @@ export default function PokemonDetails({ pokemon }) {
     </article>
   );
 }
-
-PokemonDetails.protoTypes = {
-  pokemon: PropTypes.string.isRequired,
-};
