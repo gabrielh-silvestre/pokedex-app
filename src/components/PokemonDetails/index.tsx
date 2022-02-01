@@ -1,22 +1,22 @@
-import { Pokemon } from "pokenode-ts";
+import { Pokemon } from 'pokenode-ts';
 
 import PokemonImage from '../PokemonImage';
 import PokemonName from '../PokemonName';
 import PokemonPhysical from '../PokemonPhysical';
-// import PokemonForces from '../PokemonForces';
+import { PokemonForces } from '../PokemonForces';
 import { PokemonStats } from '../PokemonStats';
 import Arrows from '../Arrows';
 
 type PokemonDetailsProps = {
-  pokemon: Pokemon
-}
+  pokemon: Pokemon;
+};
 
 export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   const {
     id,
     name,
     abilities,
-    // types,
+    types,
     height,
     weight,
     stats,
@@ -52,12 +52,11 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
         </section>
 
         <section className="bg-gray-200 my-4 p-4 rounded-lg sm:col-start-2 sm:flex sm:flex-col sm:justify-between lg:flex-row lg:row-start-4 lg:col-span-2">
-          {/* <PokemonForces types={typeNames} /> */}
-          Forças
+          <PokemonForces types={types} />
         </section>
 
         <section className="bg-blue-500 p-8 my-4 text-center rounded-lg sm:col-start-1 sm:row-start-3 lg:col-span-2">
-          <PokemonStats stats={ stats } />
+          <PokemonStats stats={stats} />
         </section>
       </div>
       <Arrows
