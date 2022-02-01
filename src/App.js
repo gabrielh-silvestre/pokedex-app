@@ -12,7 +12,7 @@ function App() {
 
       <Switch>
         <Route
-          path="/pokemon/:pokemonId" component={<PokemonSinglePage />} />
+          path="/pokemon/:pokemonId" component={ PokemonSinglePage } />
         <Route path="/" component={Home} />
       </Switch>
     </div>
