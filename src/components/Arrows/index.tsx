@@ -1,34 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LeftArrow from './icons/LeftArrow';
-import RightArrow from './icons/RightArrow';
+import LeftArrow from '../icons/LeftArrow';
+import RightArrow from '../icons/RightArrow';
 
-export default function Arrows({ actualPokemon, arrow, className }) {
+interface ArrowsProps {
+  actualPokemon: number;
+  arrow: 'right' | 'left';
+  className: string;
+}
+
+export function Arrows({ actualPokemon, arrow, className }: ArrowsProps) {
   const [next, setNext] = useState(0);
   const [previous, setPrevious] = useState(0);
 
-  useEffect(() => {
-    setNextPokemon();
-    setPrevPokemon();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actualPokemon]);
-
-  const setNextPokemon = () => {
+  const setNextPokemon = useCallback(() => {
     if (actualPokemon < 898) {
       setNext(actualPokemon + 1);
     } else {
       setNext(actualPokemon);
     }
-  };
+  }, [actualPokemon]);
 
-  const setPrevPokemon = () => {
+  const setPrevPokemon = useCallback(() => {
     if (actualPokemon > 1) {
       setPrevious(actualPokemon - 1);
     } else {
       setPrevious(actualPokemon);
     }
-  };
+  }, [actualPokemon]);
+
+  useEffect(() => {
+    setNextPokemon();
+    setPrevPokemon();
+  }, [setNextPokemon, setPrevPokemon]);
 
   return arrow === 'right' ? (
     <Link className={className} to={`/pokemon/${next}`}>
