@@ -5,7 +5,7 @@ import PokemonName from '../PokemonName';
 import PokemonPhysical from '../PokemonPhysical';
 import { PokemonForces } from '../PokemonForces';
 import { PokemonStats } from '../PokemonStats';
-import Arrows from '../Arrows';
+import { Arrows } from '../Arrows';
 
 type PokemonDetailsProps = {
   pokemon: Pokemon;
