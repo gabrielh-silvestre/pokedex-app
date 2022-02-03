@@ -1,32 +1,31 @@
-import { useState, useEffect } from 'react';
-
-import { PokemonCard } from './PokemonCard';
-import LoadSpinner from './LoadSpinner/LoadSpinner';
+import { useState, useEffect, useCallback } from 'react';
+import { Pokemon } from 'pokenode-ts';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchPokemon } from '../services';
 
-export default function Pokedex() {
+import { PokemonCard } from '../PokemonCard';
+import LoadSpinner from '../LoadSpinner/LoadSpinner';
+import { fetchPokemon } from '../../services';
+
+export function Pokedex() {
   const [lastPokemon, setLastPokemon] = useState(1);
   const [manyPokemons, setManyPokemons] = useState(24);
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-  const getMultPokemons = () => {
+  const getMultPokemons = useCallback(() => {
     for (let i = lastPokemon; i <= manyPokemons; i += 1) {
       addPokemon(i);
     }
     setLastPokemon((prev) => (prev += 24));
     setManyPokemons((prev) => (prev += 24));
-  };
+  }, [lastPokemon, manyPokemons]);
 
-  const addPokemon = async (pokemonId) => {
+  const addPokemon = async (pokemonId: number) => {
     const newPokemon = await fetchPokemon(pokemonId);
     setPokemons((prev) => [...prev, newPokemon]);
   };
 
   useEffect(() => {
     getMultPokemons();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
