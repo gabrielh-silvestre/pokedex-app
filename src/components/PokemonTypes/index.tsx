@@ -2,15 +2,17 @@ import { Pokemon } from 'pokenode-ts';
 
 import { capitalizeString } from '../../services';
 
+import { TypeContainer } from './styles';
+
 type PokemonTypesProps = Pick<Pokemon, 'types'>;
 
 export function PokemonTypes({ types }: PokemonTypesProps) {
   return (
     <>
       {types.map(({ type }, i) => (
-        <p key={i} className={`${type.name} py-1 px-5 mb-2 rounded-xl lg:mx-2`}>
+        <TypeContainer key={i} $type={type.name}>
           {capitalizeString(type.name)}
-        </p>
+        </TypeContainer>
       ))}
     </>
   );
