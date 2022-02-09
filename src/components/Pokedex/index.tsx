@@ -26,7 +26,7 @@ export function Pokedex() {
 
   useEffect(() => {
     getMultPokemons();
-  }, []);
+  }, [getMultPokemons]);
 
   return (
     <InfiniteScroll
