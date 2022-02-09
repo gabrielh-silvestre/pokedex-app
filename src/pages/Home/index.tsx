@@ -1,9 +1,9 @@
-import { Pokedex } from '../components/Pokedex';
+import { Pokedex } from '../../components/Pokedex';
 
-export default function Home() {
+export function Home() {
   return (
     <main className="bg-gray-50 min-h-screen">
       <Pokedex />
     </main>
-  );
+  )
 }
