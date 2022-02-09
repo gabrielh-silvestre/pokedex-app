@@ -26,7 +26,8 @@ export function Pokedex() {
 
   useEffect(() => {
     getMultPokemons();
-  }, [getMultPokemons]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <InfiniteScroll
