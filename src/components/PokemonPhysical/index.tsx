@@ -1,3 +1,5 @@
+import { PhysicalContainer, PhysicalType, PhysicalValue } from './styles';
+
 interface PokemonPhysicalProps {
   height: number;
   weight: number;
@@ -11,20 +13,20 @@ export function PokemonPhysical({
 }: PokemonPhysicalProps) {
   return (
     <>
-      <div className="mb-5">
-        <h3 className="text-xl tracking-wider text-gray-100 mb-1">Height</h3>
-        <p className="text-lg">{height} m</p>
-      </div>
+      <PhysicalContainer>
+        <PhysicalType>Height</PhysicalType>
+        <PhysicalValue>{height} m</PhysicalValue>
+      </PhysicalContainer>
 
-      <div className="mb-5">
-        <h3 className="text-xl tracking-wider text-gray-100 mb-1">Weight</h3>
-        <p className="text-lg">{(weight / 10).toFixed(1)} Kg</p>
-      </div>
+      <PhysicalContainer>
+        <PhysicalType>Weight</PhysicalType>
+        <PhysicalValue>{(weight / 10).toFixed(1)} Kg</PhysicalValue>
+      </PhysicalContainer>
 
-      <div>
-        <h3 className="text-xl tracking-wider text-gray-100 mb-1">Ability</h3>
-        <p className="text-lg">{ability}</p>
-      </div>
+      <PhysicalContainer>
+        <PhysicalType>Ability</PhysicalType>
+        <PhysicalValue>{ability}</PhysicalValue>
+      </PhysicalContainer>
     </>
   );
 }
