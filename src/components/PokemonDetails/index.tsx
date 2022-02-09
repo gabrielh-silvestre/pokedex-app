@@ -2,7 +2,7 @@ import { Pokemon } from 'pokenode-ts';
 
 import PokemonImage from '../PokemonImage';
 import PokemonName from '../PokemonName';
-import PokemonPhysical from '../PokemonPhysical';
+import { PokemonPhysical } from '../PokemonPhysical';
 import { PokemonForces } from '../PokemonForces';
 import { PokemonStats } from '../PokemonStats';
 import { Arrows } from '../Arrows';
