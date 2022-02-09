@@ -6,6 +6,8 @@ import { capitalizeString } from '../../services';
 import { PokemonTypes } from '../PokemonTypes';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 
+import { ForcesContainer, ForcesTitle, ContentContainer } from './styles';
+
 type PokemonForcesProps = Pick<Pokemon, 'types'>;
 
 export function PokemonForces({ types }: PokemonForcesProps) {
@@ -41,34 +43,34 @@ export function PokemonForces({ types }: PokemonForcesProps) {
     <LoadSpinner />
   ) : (
     <>
-      <section className="mb-8 lg:w-full">
-        <h3 className="text-xl text-center mb-2">Type</h3>
-        <div className="flex flex-wrap justify-around">
+      <ForcesContainer>
+        <ForcesTitle>Type</ForcesTitle>
+        <ContentContainer>
           <PokemonTypes types={types} />
-        </div>
-      </section>
+        </ContentContainer>
+      </ForcesContainer>
 
-      <section className="mb-8 lg:w-full lg:mx-4">
-        <h3 className="text-xl text-center mb-2">Strong Against</h3>
-        <div className="flex flex-wrap justify-around">
+      <ForcesContainer $middle>
+        <ForcesTitle>Strong Against</ForcesTitle>
+        <ContentContainer>
           {advantageNames.map(({ name }, i) => (
             <p key={i} className={`${name} py-1 px-5 mb-2 rounded-xl lg:mx-2`}>
               {capitalizeString(name)}
             </p>
           ))}
-        </div>
-      </section>
+        </ContentContainer>
+      </ForcesContainer>
 
-      <section className="mb-4 lg:w-full">
-        <h3 className="text-xl text-center mb-2">Weak Against</h3>
-        <div className="flex flex-wrap justify-around">
+      <ForcesContainer $last>
+        <ForcesTitle>Weak Against</ForcesTitle>
+        <ContentContainer>
           {disadvantageNames.map(({ name }, i) => (
             <p key={i} className={`${name} py-1 px-5 mb-2 rounded-xl lg:mx-2`}>
               {capitalizeString(name)}
             </p>
           ))}
-        </div>
-      </section>
+        </ContentContainer>
+      </ForcesContainer>
     </>
   );
 }
