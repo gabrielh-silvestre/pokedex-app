@@ -1,7 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+interface PokemonPhysicalProps {
+  height: number;
+  weight: number;
+  ability: string;
+}
 
-export default function PokemonPhysical({ height, weight, ability }) {
+export function PokemonPhysical({
+  height,
+  weight,
+  ability,
+}: PokemonPhysicalProps) {
   return (
     <>
       <div className="mb-5">
@@ -21,9 +28,3 @@ export default function PokemonPhysical({ height, weight, ability }) {
     </>
   );
 }
-
-PokemonPhysical.protoTypes = {
-  height: PropTypes.string.isRequired,
-  weight: PropTypes.string.isRequired,
-  ability: PropTypes.string.isRequired,
-};
