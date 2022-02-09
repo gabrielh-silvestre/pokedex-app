@@ -1,9 +1,9 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from './pages/Home';
-import PokemonSinglePage from './pages/PokemonSinglePage';
-import Header from './components/Header';
+import { Home } from './pages/Home';
+import { PokemonSinglePage } from './pages/PokemonSinglePage';
+import { Header } from './components/Header';
 
 function App() {
   return (
@@ -12,9 +12,7 @@ function App() {
 
       <Switch>
         <Route
-          path="/pokemon/:pokemonName"
-          render={(props) => <PokemonSinglePage {...props} />}
-        />
+          path="/pokemon/:pokemonId" component={ PokemonSinglePage } />
         <Route path="/" component={Home} />
       </Switch>
     </div>

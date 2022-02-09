@@ -1,33 +1,32 @@
-import React, { useState, useEffect } from 'react';
-
-import PokeCard from './PokemonCard';
-import LoadSpinner from './LoadSpinner/LoadSpinner';
+import { useState, useEffect, useCallback } from 'react';
+import { Pokemon } from 'pokenode-ts';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchPokemon } from '../services';
 
-export default function Pokedex() {
+import { PokemonCard } from '../PokemonCard';
+import LoadSpinner from '../LoadSpinner/LoadSpinner';
+import { fetchPokemon } from '../../services';
+
+export function Pokedex() {
   const [lastPokemon, setLastPokemon] = useState(1);
   const [manyPokemons, setManyPokemons] = useState(24);
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-  const getMultPokemons = () => {
+  const getMultPokemons = useCallback(() => {
     for (let i = lastPokemon; i <= manyPokemons; i += 1) {
       addPokemon(i);
     }
-    setLastPokemon((prev) => prev += 24);
-    setManyPokemons((prev) => prev += 24);
-  };
+    setLastPokemon((prev) => (prev += 24));
+    setManyPokemons((prev) => (prev += 24));
+  }, [lastPokemon, manyPokemons]);
 
-  const addPokemon = async (pokemonId) => {
+  const addPokemon = async (pokemonId: number) => {
     const newPokemon = await fetchPokemon(pokemonId);
     setPokemons((prev) => [...prev, newPokemon]);
-  }
+  };
 
   useEffect(() => {
     getMultPokemons();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getMultPokemons]);
 
   return (
     <InfiniteScroll
@@ -43,11 +42,10 @@ export default function Pokedex() {
       }
       className="px-4 z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
     >
-      {pokemons
-        .sort((a, b) => a.id - b.id)
-        .map((pokemon) => (
-          <PokeCard key={pokemon.name} pokemon={pokemon} />
-        ))}
+      {pokemons.length > 0 &&
+        pokemons
+          .sort((a, b) => a.id - b.id)
+          .map((pokemon) => <PokemonCard key={pokemon.name} {...pokemon} />)}
     </InfiniteScroll>
   );
 }

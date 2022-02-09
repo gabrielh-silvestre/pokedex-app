@@ -1,19 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import PokemonName from './PokemonName';
-import PokemonImage from './PokemonImage';
-import PokemonTypes from './PokemonTypes';
 
-export default function PokeCard({
-  pokemon: {
-    sprites: { front_default },
-    id,
-    name,
-    types,
-  },
-}) {
-  const typeNames = types.flatMap(({ type: { name } }) => name);
+import { Pokemon as PokemonCardProps } from 'pokenode-ts';
+
+import PokemonImage from '../PokemonImage';
+import PokemonName from '../PokemonName';
+import { PokemonTypes } from '../PokemonTypes';
+
+export function PokemonCard({
+  sprites: { front_default },
+  id,
+  name,
+  types,
+}: PokemonCardProps) {
 
   return (
     <section className="flex flex-col items-center shadow-sm w-full mx-auto my-8 rounded hover:shadow-xl duration-200">
@@ -33,20 +31,9 @@ export default function PokeCard({
           </h4>
         </div>
         <div className="flex justify-around my-2 text-xs">
-          <PokemonTypes types={typeNames} />
+          <PokemonTypes types={types} />
         </div>
       </div>
     </section>
   );
 }
-
-PokeCard.propTypes = {
-  pokemon: PropTypes.shape({
-    sprites: PropTypes.shape({
-      front_default: PropTypes.string.isRequired,
-    }).isRequired,
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    types: PropTypes.array.isRequired,
-  }).isRequired,
-};
