@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 export function PokemonCard({
-  sprites: { front_default },
+  sprites: { other },
   id,
   name,
   types,
@@ -26,7 +26,7 @@ export function PokemonCard({
         <ImageContainer>
           <img
             className="w-8/12 sm:w-2/4"
-            src={front_default as string}
+            src={other['official-artwork'].front_default as string}
             alt={name}
           />
         </ImageContainer>
