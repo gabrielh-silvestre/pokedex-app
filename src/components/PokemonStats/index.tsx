@@ -1,22 +1,29 @@
 import { Pokemon } from 'pokenode-ts';
+
 import { capitalizeString } from '../../services';
+
+import {
+  StatTitle,
+  StatsContainer,
+  ContentContainer,
+  StatName,
+  StatValue,
+} from './styles';
 
 type PokemonStatsProps = Pick<Pokemon, 'stats'>;
 
 export function PokemonStats({ stats }: PokemonStatsProps) {
   return (
     <>
-      <h2 className="text-2xl text-gray-100 mb-4">Base Stats</h2>
-      <div className="lg:grid lg:grid-cols-2">
+      <StatTitle>Base Stats</StatTitle>
+      <StatsContainer>
         {stats.map(({ stat, base_stat }, i) => (
-          <div key={i} className="mb-2">
-            <h3 className="text-xl text-gray-100">
-              {capitalizeString(stat.name)}
-            </h3>
-            <p className="text-lg">{base_stat}</p>
-          </div>
+          <ContentContainer key={i}>
+            <StatName>{capitalizeString(stat.name)}</StatName>
+            <StatValue>{base_stat}</StatValue>
+          </ContentContainer>
         ))}
-      </div>
+      </StatsContainer>
     </>
   );
 }

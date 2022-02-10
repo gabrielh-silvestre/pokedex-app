@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import { SearchInput } from './style';
+
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [code, setCode] = useState('');
@@ -23,8 +25,7 @@ export function SearchBar() {
   return (
     <>
       {code === 'Enter' && <Redirect to={`/pokemon/${searchTerm}`} />}
-      <input
-        className="pl-2 outline-none py-1 lg:py-0 lg:rounded lg:w-full"
+      <SearchInput
         type="text"
         name="pokemon-name-input"
         id="pokemon-name-input"

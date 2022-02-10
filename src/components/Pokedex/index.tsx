@@ -2,9 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { Pokemon } from 'pokenode-ts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { fetchPokemon } from '../../services';
+
 import { PokemonCard } from '../PokemonCard';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
-import { fetchPokemon } from '../../services';
 
 export function Pokedex() {
   const [lastPokemon, setLastPokemon] = useState(1);
