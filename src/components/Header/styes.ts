@@ -31,7 +31,7 @@ export const HeaderTitle = tw.h1`
   text-gray-100
 `;
 
-export const NavBar = tw.nav`
+export const NavBar = tw.nav<{ $isVisible: boolean }>`
   p-4
   pt-7
 
@@ -39,7 +39,7 @@ export const NavBar = tw.nav`
   right-0
   top-20
 
-  hidden
+  ${({ $isVisible }) => $isVisible ? 'flex' : 'hidden'}
   rounded-bl-lg
 
 bg-red-600
@@ -67,10 +67,12 @@ export const LinkItem = tw.li<{ $first?: boolean }>`
   ${({ $first }) => $first ? 'lg:ml-0' : 'lg:ml-5'}
 `;
 
-export const SearchContainer = tw.div`
+export const SearchContainer = tw.div<{ $isVisible: boolean }>`
   absolute
   right-0
   top-20
+
+  ${({ $isVisible }) => $isVisible ? 'flex' : 'hidden' }
 
   overflow-hidden
 

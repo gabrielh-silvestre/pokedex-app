@@ -15,10 +15,11 @@ import {
 } from './styes';
 
 export function Header() {
-  const [mobileMenu, setMobileMenu] = useState('flex');
+  const [mobileMenu, setMobileMenu] = useState(false);
 
-  const handleToggle = (toggled: boolean) =>
-    toggled ? setMobileMenu('flex') : setMobileMenu('none');
+  const handleToggle = () => {
+    setMobileMenu(!mobileMenu);
+  };
 
   return (
     <HeaderContainer>
@@ -30,7 +31,7 @@ export function Header() {
           <Hamburger color="#f0f0f0" size={28} onToggle={handleToggle} />
         </div>
         <NavBar
-          style={{ display: mobileMenu }}
+          $isVisible={mobileMenu}
         >
           <LinkList>
             <LinkItem $first>
@@ -62,9 +63,7 @@ export function Header() {
             </LinkItem>
           </LinkList>
         </NavBar>
-        <SearchContainer
-          style={{ display: mobileMenu, width: '183px' }}
-        >
+        <SearchContainer $isVisible={mobileMenu} style={{ width: '183px' }}>
           <SearchBar />
         </SearchContainer>
       </ContentContainer>
