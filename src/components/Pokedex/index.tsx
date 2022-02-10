@@ -21,7 +21,7 @@ export function Pokedex() {
   }, [lastPokemon, manyPokemons]);
 
   const addPokemon = async (pokemonId: number) => {
-    const newPokemon = await fetchPokemon(pokemonId);
+    const newPokemon = await fetchPokemon.getPokemonById(pokemonId);
     setPokemons((prev) => [...prev, newPokemon]);
   };
 

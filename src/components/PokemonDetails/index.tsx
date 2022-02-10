@@ -30,7 +30,7 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
     height,
     weight,
     stats,
-    sprites: { front_default },
+    sprites: { other },
   } = pokemon;
 
   const getAbility = () => abilities[0].ability.name;
@@ -50,7 +50,7 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
         <ContainerImage>
           <img
             className="w-8/12 sm:w-2/4"
-            src={front_default as string}
+            src={other['official-artwork'].front_default as string}
             alt={name}
           />
         </ContainerImage>
