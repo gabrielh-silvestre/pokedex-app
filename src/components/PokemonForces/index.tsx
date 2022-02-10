@@ -35,10 +35,6 @@ export function PokemonForces({ types }: PokemonForcesProps) {
     });
   }, [types, getAllRelations]);
 
-  useEffect(() => {
-    console.log({ advantageNames, disadvantageNames });
-  }, [advantageNames, disadvantageNames]);
-
   return loading ? (
     <LoadSpinner />
   ) : (
