@@ -1,8 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Pokemon } from 'pokenode-ts';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
-import { fetchPokemon } from '../../services/api';
 
 import { PokemonCard } from '../PokemonCard';
 import { SubHeader } from '../Header/SubHeader';
@@ -11,20 +8,15 @@ import LoadSpinner from '../LoadSpinner/LoadSpinner';
 export function Pokedex() {
   const [lastPokemon, setLastPokemon] = useState(1);
   const [manyPokemons, setManyPokemons] = useState(24);
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<(number | string)[]>([]);
 
   const getMultPokemons = useCallback(() => {
     for (let i = lastPokemon; i <= manyPokemons; i += 1) {
-      addPokemon(i);
+      setPokemons((prevPokemons) => [...prevPokemons, i])
     }
     setLastPokemon((prev) => (prev += 24));
     setManyPokemons((prev) => (prev += 24));
   }, [lastPokemon, manyPokemons]);
-
-  const addPokemon = async (pokemonId: number) => {
-    const newPokemon = await fetchPokemon.getPokemonById(pokemonId);
-    setPokemons((prev) => [...prev, newPokemon]);
-  };
 
   useEffect(() => {
     getMultPokemons();
@@ -49,9 +41,8 @@ export function Pokedex() {
       >
         {pokemons.length > 0 &&
           pokemons
-            .sort((a, b) => a.id - b.id)
-            .map((pokemon) => (
-              <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            .map((pokemonId) => (
+              <PokemonCard key={pokemonId} pokemonId={pokemonId} />
             ))}
       </InfiniteScroll>
     </>
