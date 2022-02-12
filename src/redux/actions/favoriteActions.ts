@@ -1,5 +1,22 @@
-import { createAction } from "@reduxjs/toolkit";
-import { Pokemon } from "pokenode-ts";
+import { createAction } from '@reduxjs/toolkit';
+import { Pokemon } from 'pokenode-ts';
 
-export const addItemToFavorite = createAction<Pokemon>('favorite/add');
-export const removeFromFavorite = createAction<Pokemon>('favorite/remove');
+import {
+  addItemToFavoriteLocal,
+  removeFromFavoriteLocal,
+} from '../../services/localStorage';
+
+export const addItemToFavorite = createAction(
+  'favorite/add',
+  (newFavoriteItem: Pokemon) => {
+    addItemToFavoriteLocal(newFavoriteItem);
+    return { payload: newFavoriteItem };
+  }
+);
+export const removeFromFavorite = createAction(
+  'favorite/remove',
+  (removeFavoriteItem: Pokemon) => {
+    removeFromFavoriteLocal(removeFavoriteItem);
+    return { payload: removeFavoriteItem };
+  }
+);
