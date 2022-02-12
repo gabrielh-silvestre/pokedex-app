@@ -28,7 +28,7 @@ export function FavoriteButton({ pokemon, className, size }: FavoriteButtonProps
         dispatch(removeFromFavorite(pokemon));
       }}
     >
-      <HiHeart className={`${'w-' + size} ${'h-' + size}`} />
+      <HiHeart className="w-full h-full" />
     </button>
   ) : (
     <button
@@ -38,7 +38,7 @@ export function FavoriteButton({ pokemon, className, size }: FavoriteButtonProps
         dispatch(addItemToFavorite(pokemon));
       }}
     >
-      <HiOutlineHeart className={`${'w-' + size} ${'h-' + size}`} />
+      <HiOutlineHeart className="w-full h-full" />
     </button>
   );
 }
