@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Pokemon } from 'pokenode-ts';
 
-import { capitalizeString } from '../../services';
-import { fetchPokemon } from '../../services/api';
+import { capitalizeString } from '../../../services';
+import { fetchPokemon } from '../../../services/api';
 
-import { PokemonTypes } from '../PokemonTypes';
-import { FavoriteButton } from '../Buttons/FavoriteButton';
+import { PokemonTypes } from '../../PokemonTypes';
+import { FavoriteButton } from '../../Buttons/FavoriteButton';
 
-import LoadSpinner from '../LoadSpinner/LoadSpinner';
+import LoadSpinner from '../../LoadSpinner/LoadSpinner';
 
 import {
   Container,
@@ -19,11 +19,11 @@ import {
   ContentTypes,
 } from './styles';
 
-interface PokemonCardProps {
+interface MainCardProps {
   pokemonId: number | string;
 }
 
-export function PokemonCard({ pokemonId }: PokemonCardProps) {
+export function MainCard({ pokemonId }: MainCardProps) {
   const [pokemon, setPokemon] = useState<Pokemon>({} as Pokemon);
 
   const getPokemonById = useCallback(async () => {
