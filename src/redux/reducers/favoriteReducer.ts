@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { Pokemon } from "pokenode-ts";
 
-import { addItemToFavorite, removeFromFavorite } from '../actions/favoriteActions';
+import { addItemToFavorite, recoverFromLocal, removeFromFavorite } from '../actions/favoriteActions';
 
 type FavoritePokemons = Pokemon[];
 
@@ -14,5 +14,8 @@ export const FavoriteReducer = createReducer(INITIAL_STATE, (builder) => {
     })
     .addCase(removeFromFavorite, (state, { payload }) => {
       return state.filter(({ id }) => id !== payload.id);
+    })
+    .addCase(recoverFromLocal, (_, { payload }) => {
+      return payload;
     });
 });
