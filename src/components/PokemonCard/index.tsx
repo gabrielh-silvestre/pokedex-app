@@ -29,7 +29,7 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
 
   return (
     <Container>
-      <FavoriteButton pokemon={pokemon} />
+      <FavoriteButton pokemon={pokemon} className="absolute top-0 right-0" />
       <Link to={`/pokemon/${id}`} className="w-full">
         <ImageContainer>
           <img
