@@ -13,16 +13,13 @@ export const HeaderContainer = tw.header`
 `;
 
 export const ContentContainer = tw.div`
-  px-4
-  mx-auto
+  container
 
   flex
   justify-between
 
-  lg:px-24
   lg:grid
 
-  xl:w-4/5
   xl:mx-auto
 `;
 
