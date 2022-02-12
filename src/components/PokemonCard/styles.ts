@@ -6,6 +6,8 @@ export const Container = tw.section`
   mx-auto
   my-8
 
+  relative
+
   flex
   flex-col
   items-center

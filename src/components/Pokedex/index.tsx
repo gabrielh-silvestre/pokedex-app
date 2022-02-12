@@ -42,12 +42,12 @@ export function Pokedex() {
           <b>Yay! You have seen it all</b>
         </p>
       }
-      className="px-4 z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:px-24 xl:w-4/5 xl:mx-auto 2xl:grid-cols-4"
+      className="container z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
     >
       {pokemons.length > 0 &&
         pokemons
           .sort((a, b) => a.id - b.id)
-          .map((pokemon) => <PokemonCard key={pokemon.name} {...pokemon} />)}
+          .map((pokemon) => <PokemonCard key={pokemon.name} pokemon={pokemon} />)}
     </InfiniteScroll>
   );
 }

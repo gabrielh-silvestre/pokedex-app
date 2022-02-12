@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Pokemon as PokemonCardProps } from 'pokenode-ts';
+import { Pokemon } from 'pokenode-ts';
 
 import { capitalizeString } from '../../services';
 
 import { PokemonTypes } from '../PokemonTypes';
+import { FavoriteButton } from '../Buttons/FavoriteButton';
 
 import {
   Container,
@@ -14,14 +15,21 @@ import {
   ContentTypes,
 } from './styles';
 
-export function PokemonCard({
-  sprites: { other },
-  id,
-  name,
-  types,
-}: PokemonCardProps) {
+interface PokemonCardProps {
+  pokemon: Pokemon;
+}
+
+export function PokemonCard({ pokemon }: PokemonCardProps) {
+  const {
+    sprites: { other },
+    id,
+    name,
+    types,
+  } = pokemon;
+
   return (
     <Container>
+      <FavoriteButton pokemon={pokemon} className="absolute top-0 right-0" />
       <Link to={`/pokemon/${id}`} className="w-full">
         <ImageContainer>
           <img
