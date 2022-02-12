@@ -12,9 +12,10 @@ import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 interface FavoriteButtonProps {
   pokemon: Pokemon;
   className?: string;
+  size: string;
 }
 
-export function FavoriteButton({ pokemon, className }: FavoriteButtonProps) {
+export function FavoriteButton({ pokemon, className, size }: FavoriteButtonProps) {
   const favorite = useSelector((state: RootState) => state.favorite);
   const dispatch = useDispatch();
   const isFavorite = favorite.find(({ id }) => id === pokemon.id);
@@ -22,24 +23,22 @@ export function FavoriteButton({ pokemon, className }: FavoriteButtonProps) {
   return isFavorite ? (
     <button
       type="button"
+      className={`text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
       onClick={() => {
         dispatch(removeFromFavorite(pokemon));
       }}
     >
-      <HiHeart
-        className={`w-8 h-8 text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
-      />
+      <HiHeart className={`${'w-' + size} ${'h-' + size}`} />
     </button>
   ) : (
     <button
       type="button"
+      className={`text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
       onClick={() => {
         dispatch(addItemToFavorite(pokemon));
       }}
     >
-      <HiOutlineHeart
-        className={`w-8 h-8 text-red-600 opacity-50 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
-      />
+      <HiOutlineHeart className={`${'w-' + size} ${'h-' + size}`} />
     </button>
   );
 }
