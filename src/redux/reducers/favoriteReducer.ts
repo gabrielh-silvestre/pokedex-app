@@ -1,11 +1,17 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { Pokemon } from "pokenode-ts";
+import { createReducer } from '@reduxjs/toolkit';
+import { Pokemon } from 'pokenode-ts';
 
-import { addItemToFavorite, recoverFromLocal, removeFromFavorite } from '../actions/favoriteActions';
+import { recoverFavoritesFromLocal } from '../../services/localStorage';
+import {
+  addItemToFavorite,
+  removeFromFavorite,
+} from '../actions/favoriteActions';
 
 type FavoritePokemons = Pokemon[];
 
-const INITIAL_STATE = [] as FavoritePokemons;
+const INITIAL_STATE = () => {
+  return recoverFavoritesFromLocal() as FavoritePokemons;
+};
 
 export const FavoriteReducer = createReducer(INITIAL_STATE, (builder) => {
   builder
@@ -14,8 +20,5 @@ export const FavoriteReducer = createReducer(INITIAL_STATE, (builder) => {
     })
     .addCase(removeFromFavorite, (state, { payload }) => {
       return state.filter(({ id }) => id !== payload.id);
-    })
-    .addCase(recoverFromLocal, (_, { payload }) => {
-      return payload;
     });
 });

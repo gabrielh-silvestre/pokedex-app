@@ -4,7 +4,6 @@ import { Pokemon } from 'pokenode-ts';
 import {
   addItemToFavoriteLocal,
   removeFromFavoriteLocal,
-  recoverFavoritesFromLocal,
 } from '../../services/localStorage';
 
 export const addItemToFavorite = createAction(
@@ -21,8 +20,3 @@ export const removeFromFavorite = createAction(
     return { payload: removeFavoriteItem };
   }
 );
-
-export const recoverFromLocal = createAction('favorite/recover', () => {
-  const favoritePokeFromLocal = recoverFavoritesFromLocal();
-  return { payload: favoritePokeFromLocal };
-});
