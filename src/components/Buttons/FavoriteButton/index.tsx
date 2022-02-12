@@ -7,25 +7,39 @@ import {
   removeFromFavorite,
 } from '../../../redux/actions/favoriteActions';
 
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+
 interface FavoriteButtonProps {
   pokemon: Pokemon;
+  className?: string;
 }
 
-export function FavoriteButton({ pokemon }: FavoriteButtonProps) {
+export function FavoriteButton({ pokemon, className }: FavoriteButtonProps) {
   const favorite = useSelector((state: RootState) => state.favorite);
   const dispatch = useDispatch();
   const isFavorite = favorite.find(({ id }) => id === pokemon.id);
 
-  return (
+  return isFavorite ? (
     <button
       type="button"
       onClick={() => {
-        isFavorite
-          ? dispatch(removeFromFavorite(pokemon))
-          : dispatch(addItemToFavorite(pokemon));
+        dispatch(removeFromFavorite(pokemon));
       }}
     >
-      Favorite
+      <HiHeart
+        className={`w-8 h-8 text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
+      />
+    </button>
+  ) : (
+    <button
+      type="button"
+      onClick={() => {
+        dispatch(addItemToFavorite(pokemon));
+      }}
+    >
+      <HiOutlineHeart
+        className={`w-8 h-8 text-red-600 opacity-50 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
+      />
     </button>
   );
 }
