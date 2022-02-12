@@ -47,7 +47,7 @@ export function Pokedex() {
       {pokemons.length > 0 &&
         pokemons
           .sort((a, b) => a.id - b.id)
-          .map((pokemon) => <PokemonCard key={pokemon.name} {...pokemon} />)}
+          .map((pokemon) => <PokemonCard key={pokemon.name} pokemon={pokemon} />)}
     </InfiniteScroll>
   );
 }
