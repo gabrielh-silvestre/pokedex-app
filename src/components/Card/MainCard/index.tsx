@@ -39,7 +39,11 @@ export function MainCard({ pokemonId }: MainCardProps) {
 
   return pokemon.id ? (
     <Container>
-      <FavoriteButton pokemon={pokemon} className="absolute top-0 right-0" />
+      <FavoriteButton
+        pokemon={pokemon}
+        size="8"
+        className="w-12 h-12 absolute top-0 right-0"
+      />
       <Link to={`/pokemon/${pokemon.id}`} className="w-full">
         <ImageContainer>
           <img
