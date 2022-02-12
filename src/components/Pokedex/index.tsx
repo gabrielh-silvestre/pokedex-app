@@ -2,9 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { Pokemon } from 'pokenode-ts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { fetchPokemon } from '../../services';
+import { fetchPokemon } from '../../services/api';
 
 import { PokemonCard } from '../PokemonCard';
+import { SubHeader } from '../Header/SubHeader';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 
 export function Pokedex() {
@@ -31,23 +32,28 @@ export function Pokedex() {
   }, []);
 
   return (
-    <InfiniteScroll
-      dataLength={pokemons.length}
-      next={getMultPokemons}
-      scrollThreshold={0.9}
-      hasMore={true}
-      loader={<LoadSpinner />}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
-      className="container z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
-    >
-      {pokemons.length > 0 &&
-        pokemons
-          .sort((a, b) => a.id - b.id)
-          .map((pokemon) => <PokemonCard key={pokemon.name} pokemon={pokemon} />)}
-    </InfiniteScroll>
+    <>
+      <SubHeader />
+      <InfiniteScroll
+        dataLength={pokemons.length}
+        next={getMultPokemons}
+        scrollThreshold={0.9}
+        hasMore={true}
+        loader={<LoadSpinner />}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+        className="container z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
+      >
+        {pokemons.length > 0 &&
+          pokemons
+            .sort((a, b) => a.id - b.id)
+            .map((pokemon) => (
+              <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            ))}
+      </InfiniteScroll>
+    </>
   );
 }
