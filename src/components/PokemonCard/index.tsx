@@ -1,10 +1,14 @@
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Pokemon } from 'pokenode-ts';
 
 import { capitalizeString } from '../../services';
+import { fetchPokemon } from '../../services/api';
 
 import { PokemonTypes } from '../PokemonTypes';
 import { FavoriteButton } from '../Buttons/FavoriteButton';
+
+import LoadSpinner from '../LoadSpinner/LoadSpinner';
 
 import {
   Container,
@@ -16,41 +20,51 @@ import {
 } from './styles';
 
 interface PokemonCardProps {
-  pokemon: Pokemon;
+  pokemonId: number | string;
 }
 
-export function PokemonCard({ pokemon }: PokemonCardProps) {
-  const {
-    sprites: { other },
-    id,
-    name,
-    types,
-  } = pokemon;
+export function PokemonCard({ pokemonId }: PokemonCardProps) {
+  const [pokemon, setPokemon] = useState<Pokemon>({} as Pokemon);
 
-  return (
+  const getPokemonById = useCallback(async () => {
+    if (typeof pokemonId === 'number') {
+      const pokemonData = await fetchPokemon.getPokemonById(pokemonId);
+      setPokemon(pokemonData);
+    }
+  }, [pokemonId]);
+
+  useEffect(() => {
+    getPokemonById();
+  }, [getPokemonById]);
+
+  return pokemon.id ? (
     <Container>
       <FavoriteButton pokemon={pokemon} className="absolute top-0 right-0" />
-      <Link to={`/pokemon/${id}`} className="w-full">
+      <Link to={`/pokemon/${pokemon.id}`} className="w-full">
         <ImageContainer>
           <img
             className="w-8/12 sm:w-2/4"
-            src={other['official-artwork'].front_default as string}
-            alt={name}
+            src={
+              pokemon.sprites.other['official-artwork'].front_default as string
+            }
+            alt={pokemon.name}
           />
         </ImageContainer>
       </Link>
 
       <ContentContainer>
         <ContentIdentifier>
-          <p>Nº {id}</p>
+          <p>Nº {pokemon.id}</p>
         </ContentIdentifier>
         <ContainerTitle>
-          <h4>{capitalizeString(name)}</h4>
+          <h4>{capitalizeString(pokemon.name)}</h4>
         </ContainerTitle>
         <ContentTypes>
-          <PokemonTypes types={types} />
+          <PokemonTypes types={pokemon.types} />
         </ContentTypes>
       </ContentContainer>
     </Container>
+  ) : (
+    <LoadSpinner />
   );
 }
