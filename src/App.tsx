@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { PokemonSinglePage } from './pages/PokemonSinglePage';
 import { Favorites } from './pages/Favorites';
-import { Header } from './components/Header';
+import { Header } from './components/Header/MainHeader';
 
 function App() {
   return (
