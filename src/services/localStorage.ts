@@ -39,3 +39,8 @@ export async function removeFromFavoriteLocal(
 
   localStorage.setItem(LOCAL_FAVORITES, convertToString(attItems));
 }
+
+export function recoverFavoritesFromLocal() {
+  const favoriteItems = getInitialValue(LOCAL_FAVORITES, []);
+  return favoriteItems as Pokemon[];
+}
