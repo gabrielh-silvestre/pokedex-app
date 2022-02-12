@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { RootState } from '../../redux/store';
 import { getMultPokemonsById } from '../../redux/actions/pokemonActions';
 
-import { PokemonCard } from '../PokemonCard';
+import { MainCard } from '../Card/MainCard';
 import { SubHeader } from '../Header/SubHeader';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 
@@ -39,7 +39,7 @@ export function Pokedex() {
       >
         {pokemonsIds.length > 0 &&
           pokemonsIds.map((pokemonId) => (
-            <PokemonCard key={pokemonId} pokemonId={pokemonId} />
+            <MainCard key={pokemonId} pokemonId={pokemonId} />
           ))}
       </InfiniteScroll>
     </>
