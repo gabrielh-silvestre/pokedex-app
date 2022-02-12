@@ -1,34 +1,32 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
+
+import { RootState } from '../../redux/store';
+import { getMultPokemonsById } from '../../redux/actions/pokemonActions';
 
 import { PokemonCard } from '../PokemonCard';
 import { SubHeader } from '../Header/SubHeader';
 import LoadSpinner from '../LoadSpinner/LoadSpinner';
 
 export function Pokedex() {
-  const [lastPokemon, setLastPokemon] = useState(1);
-  const [manyPokemons, setManyPokemons] = useState(24);
-  const [pokemons, setPokemons] = useState<(number | string)[]>([]);
-
-  const getMultPokemons = useCallback(() => {
-    for (let i = lastPokemon; i <= manyPokemons; i += 1) {
-      setPokemons((prevPokemons) => [...prevPokemons, i])
-    }
-    setLastPokemon((prev) => (prev += 24));
-    setManyPokemons((prev) => (prev += 24));
-  }, [lastPokemon, manyPokemons]);
+  const dispatch = useDispatch();
+  const { pokemonsIds, fetchNumber } = useSelector(
+    (state: RootState) => state.pokemons
+  );
 
   useEffect(() => {
-    getMultPokemons();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getMultPokemonsById());
+  }, [dispatch]);
 
   return (
     <>
       <SubHeader />
       <InfiniteScroll
-        dataLength={pokemons.length}
-        next={getMultPokemons}
+        dataLength={fetchNumber}
+        next={() => {
+          dispatch(getMultPokemonsById());
+        }}
         scrollThreshold={0.9}
         hasMore={true}
         loader={<LoadSpinner />}
@@ -39,11 +37,10 @@ export function Pokedex() {
         }
         className="container z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
       >
-        {pokemons.length > 0 &&
-          pokemons
-            .map((pokemonId) => (
-              <PokemonCard key={pokemonId} pokemonId={pokemonId} />
-            ))}
+        {pokemonsIds.length > 0 &&
+          pokemonsIds.map((pokemonId) => (
+            <PokemonCard key={pokemonId} pokemonId={pokemonId} />
+          ))}
       </InfiniteScroll>
     </>
   );
