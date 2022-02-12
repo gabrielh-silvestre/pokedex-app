@@ -1,7 +1,7 @@
 import tw from 'tailwind-styled-components';
 
-export const Container = tw.main`
-  h-full
+export const Container = tw.main<{ $hasFavorite: boolean }>`
+  ${({ $hasFavorite }) => $hasFavorite ?'h-auto' : 'h-full'}
   container
   relative
 
