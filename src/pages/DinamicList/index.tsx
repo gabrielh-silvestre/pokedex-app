@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
 import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getMultPokemonsById } from '../../redux/actions/pokemonActions';
 
-import { MainCard } from '../Card/MainCard';
-import { SubHeader } from '../Header/SubHeader';
-import LoadSpinner from '../LoadSpinner/LoadSpinner';
+import { SubHeader } from '../../components/Header/SubHeader';
+import { MainCard } from '../../components/Card/MainCard';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
 
-export function Pokedex() {
+export function DinamicList() {
   const dispatch = useDispatch();
   const { pokemonsIds, fetchNumber } = useSelector(
     (state: RootState) => state.pokemons
@@ -20,7 +20,7 @@ export function Pokedex() {
   }, [dispatch]);
 
   return (
-    <>
+    <main className="bg-gray-50 min-h-screen">
       <SubHeader />
       <InfiniteScroll
         dataLength={fetchNumber}
@@ -42,6 +42,6 @@ export function Pokedex() {
             <MainCard key={pokemonId} pokemonId={pokemonId} />
           ))}
       </InfiniteScroll>
-    </>
+    </main>
   );
 }
