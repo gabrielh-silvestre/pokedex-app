@@ -11,7 +11,7 @@ export const Container = tw.section`
   justify-items-center
   gap-x-2
 
-  shadow-sm
+  shadow
   rounded
 
   duration-200
