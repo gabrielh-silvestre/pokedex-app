@@ -12,10 +12,9 @@ import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 interface FavoriteButtonProps {
   pokemon: Pokemon;
   className?: string;
-  size: string;
 }
 
-export function FavoriteButton({ pokemon, className, size }: FavoriteButtonProps) {
+export function FavoriteButton({ pokemon, className }: FavoriteButtonProps) {
   const favorite = useSelector((state: RootState) => state.favorite);
   const dispatch = useDispatch();
   const isFavorite = favorite.find(({ id }) => id === pokemon.id);

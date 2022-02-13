@@ -36,7 +36,7 @@ export function FavoriteCard({ pokemon }: FavoriteCardProps) {
         </TypesContainer>
       </InfoContainer>
 
-      <FavoriteButton pokemon={pokemon} size={'full'} className="m-7" />
+      <FavoriteButton pokemon={pokemon} className="m-7" />
     </Container>
   );
 }
