@@ -23,7 +23,6 @@ type PokemonDetailsProps = {
 
 export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   const {
-    id,
     name,
     abilities,
     types,
@@ -39,7 +38,6 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
     <Container>
       <Arrows
         arrow="left"
-        actualPokemon={id}
         className="flex items-center row-start-3"
       />
       <ContentContainer>
@@ -73,7 +71,6 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
       </ContentContainer>
       <Arrows
         arrow="right"
-        actualPokemon={id}
         className="flex items-center justify-end row-start-3"
       />
     </Container>
