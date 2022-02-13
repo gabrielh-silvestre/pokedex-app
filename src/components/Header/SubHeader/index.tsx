@@ -1,46 +1,36 @@
-import { useCallback, useEffect, useState } from 'react';
-import { NamedAPIResource } from 'pokenode-ts';
-
-import { fetchGame, fetchPokemon } from '../../../services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import {
+  fetchGenerationList,
+  fetchTypesList,
+} from '../../../redux/actions/searchOptionsActions';
+import { RootState } from '../../../redux/store';
 import { capitalizeString } from '../../../services';
 
 export function SubHeader() {
-  const [generationList, setGenerationList] = useState<NamedAPIResource[]>(
-    [] as NamedAPIResource[]
-  );
-  const [typeList, setTypeList] = useState<NamedAPIResource[]>(
-    [] as NamedAPIResource[]
+  const dispatch = useDispatch();
+  const { generations, types } = useSelector(
+    (state: RootState) => state.searchOptions
   );
 
-  const getGenerationList = useCallback(async () => {
-    const resultList = await fetchGame.listGenerations();
-    setGenerationList(resultList.results as NamedAPIResource[]);
-  }, []);
-
-  const getTypeList = useCallback(async () => {
-    const resultList = await fetchPokemon.listTypes();
-    setTypeList(resultList.results as NamedAPIResource[]);
-  }, []);
-
   useEffect(() => {
-    getGenerationList();
-  }, [getGenerationList]);
-
-  useEffect(() => {
-    getTypeList();
-  }, [getTypeList]);
+    dispatch(fetchGenerationList());
+    dispatch(fetchTypesList());
+  }, [dispatch]);
 
   return (
     <nav>
       <select>
-        {generationList.map(({ name }, i) => (
-          <option value={ name }>{`${i + 1}º Generation`}</option>
+        {generations.map(({ name }, i) => (
+          <option value={name}>{`${i + 1}º Generation`}</option>
         ))}
       </select>
       <select>
-        {typeList.map(({ name }) => (
-          <option>{capitalizeString(name)}</option>
+        {types.map(({ name }) => (
+          name !== 'unknown'
+          && <option value={name}>{capitalizeString(name)}</option>
         ))}
       </select>
       <Link to="/favorites">Favorites</Link>
