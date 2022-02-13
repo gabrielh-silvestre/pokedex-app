@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { getMultPokemonsById } from '../actions/pokemonActions';
+import { getMultPokemonsById, getPokemonsByGeneration } from '../actions/pokemonActions';
 
 const INITIAL_STATE = {
   pokemonsIds: [] as (number | string)[],
@@ -11,5 +11,9 @@ export const PokemonReducer = createReducer(INITIAL_STATE, (builder) => {
     .addCase(getMultPokemonsById, (state) => {
       state.pokemonsIds = Array.from({length: state.fetchNumber}, (_, i) => i + 1);
       state.fetchNumber += 24;
+    })
+    .addCase(getPokemonsByGeneration.fulfilled, (state, { payload }) => {
+      state.pokemonsIds = payload;
+      state.fetchNumber = 24;
     });
 })
