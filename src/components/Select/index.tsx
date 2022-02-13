@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
-import { useParams } from 'react-router-dom';
 
 import {
   ContainerSelect,
@@ -12,23 +11,19 @@ import {
 interface SelectProps {
   label: string;
   options: string[];
+  optionSelected: string;
   templateOption: (optItem: string, optIndex: number) => string;
   onClick: (value: string) => void;
-}
-
-type Params = {
-  pokemonId: string;
-  searchOpt: string;
 }
 
 export function Select({
   label,
   options,
+  optionSelected,
   templateOption,
   onClick,
 }: SelectProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const slug = useParams<Params>();
 
   return (
     <ContainerSelect
@@ -54,7 +49,7 @@ export function Select({
           <SelectOption
             key={name}
             value={name}
-            $isSelected={!slug.pokemonId && slug.searchOpt === name}
+            $isSelected={optionSelected === name}
             onClick={() => {
               onClick(name);
             }}

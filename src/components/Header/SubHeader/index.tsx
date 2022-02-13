@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import {
   fetchGenerationList,
@@ -23,8 +23,14 @@ import {
   LinksContainer,
 } from './styles';
 
+type Params = {
+  pokemonId?: string;
+  searchOpt?: string;
+}
+
 export function SubHeader() {
   const history = useHistory();
+  const slug = useParams<Params>();
 
   const dispatch = useDispatch();
   const { generations, types } = useSelector(
@@ -64,12 +70,14 @@ export function SubHeader() {
           <Select
             label="GENERATIONS"
             options={generations.map(({ name }) => name)}
+            optionSelected={slug.searchOpt || ''}
             templateOption={generationTemplate}
             onClick={setPokemonsGeneration}
           />
           <Select
             label="TYPES"
             options={types.map(({ name }) => name)}
+            optionSelected={slug.searchOpt || ''}
             templateOption={typeTemplate}
             onClick={setPokemonsType}
           />
