@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Turn as Hamburger } from 'hamburger-react';
 
-import { SearchBar } from '../../SearchBar';
+// import { SearchBar } from '../../SearchBar';
 
 import {
   HeaderContainer,
@@ -11,7 +11,7 @@ import {
   NavBar,
   LinkList,
   LinkItem,
-  SearchContainer,
+  // SearchContainer,
 } from './styes';
 
 export function Header() {
@@ -63,9 +63,9 @@ export function Header() {
             </LinkItem>
           </LinkList>
         </NavBar>
-        <SearchContainer $isVisible={mobileMenu} style={{ width: '183px' }}>
+        {/* <SearchContainer $isVisible={mobileMenu} style={{ width: '183px' }}>
           <SearchBar />
-        </SearchContainer>
+        </SearchContainer> */}
       </ContentContainer>
     </HeaderContainer>
   );
