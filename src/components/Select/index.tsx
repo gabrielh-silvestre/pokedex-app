@@ -45,16 +45,16 @@ export function Select({
       </SelectLabel>
 
       <SelectOptionContainer $isVisible={isVisible}>
-        {options.map((name, i) => (
+        {options.map((value, i) => (
           <SelectOption
-            key={name}
-            value={name}
-            $isSelected={optionSelected === name}
+            key={value}
+            value={value}
+            $isSelected={optionSelected === value}
             onClick={() => {
-              onClick(name);
+              onClick(value);
             }}
           >
-            {templateOption(name, i)}
+            {templateOption(value, i)}
           </SelectOption>
         ))}
       </SelectOptionContainer>
