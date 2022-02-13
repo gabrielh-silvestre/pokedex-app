@@ -5,7 +5,6 @@ import {
   fetchGenerationList,
   fetchTypesList,
   resetSearchOption,
-  selectSearchOption,
 } from '../actions/searchOptionsActions';
 
 const INITIAL_STATE = {
@@ -24,10 +23,6 @@ export const SearchOptionsReducer = createReducer(INITIAL_STATE, (builder) => {
     })
     .addCase(fetchTypesList.fulfilled, (state, { payload }) => {
       state.types = payload as NamedAPIResource[];
-    })
-    .addCase(selectSearchOption, (state, { payload }) => {
-      state.searchBy = { type: '', generation: '' };
-      state.searchBy[payload.searchBy] = payload.searchOption;
     })
     .addCase(resetSearchOption, (state) => {
       state.searchBy = { type: '', generation: '' };
