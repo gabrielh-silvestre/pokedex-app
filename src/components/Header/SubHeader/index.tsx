@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   fetchGenerationList,
@@ -25,6 +25,8 @@ import {
 } from './styles';
 
 export function SubHeader() {
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const { generations, types, searchBy } = useSelector(
     (state: RootState) => state.searchOptions
@@ -38,11 +40,15 @@ export function SubHeader() {
         searchOption: generationName,
       })
     );
+
+    history.push(`/searchBy/${generationName}`);
   };
 
   const setPokemonsType = (typeName: string) => {
     dispatch(getPokemonsByType(typeName));
     dispatch(selectSearchOption({ searchBy: 'type', searchOption: typeName }));
+
+    history.push(`/searchBy/${typeName}`);
   };
 
   const generationTemplate = (str: string, index: number) =>
