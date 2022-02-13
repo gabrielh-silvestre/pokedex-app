@@ -12,16 +12,16 @@ import {
   getPokemonsByType,
 } from '../../../redux/actions/pokemonActions';
 import { RootState } from '../../../redux/store';
-import { capitalizeString } from '../../../services';
+
+import { Select } from '../../Select';
 
 import {
   Container,
   ContentContainer,
   SelectContainer,
-  Select,
-  SelectOption,
   LinksContainer,
 } from './styles';
+import { capitalizeString } from '../../../services';
 
 export function SubHeader() {
   const dispatch = useDispatch();
@@ -29,21 +29,25 @@ export function SubHeader() {
     (state: RootState) => state.searchOptions
   );
 
-  const setPokemonsGeneration = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(getPokemonsByGeneration(value));
+  const setPokemonsGeneration = (generationName: string) => {
+    dispatch(getPokemonsByGeneration(generationName));
     dispatch(
-      selectSearchOption({ searchBy: 'generation', searchOption: value })
+      selectSearchOption({
+        searchBy: 'generation',
+        searchOption: generationName,
+      })
     );
   };
 
-  const setPokemonsType = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(getPokemonsByType(value));
-    dispatch(selectSearchOption({ searchBy: 'type', searchOption: value }));
+  const setPokemonsType = (typeName: string) => {
+    dispatch(getPokemonsByType(typeName));
+    dispatch(selectSearchOption({ searchBy: 'type', searchOption: typeName }));
   };
+
+  const generationTemplate = (str: string, index: number) =>
+    `${index + 1}º Generation`;
+
+  const typeTemplate = (str: string) => `${capitalizeString(str)}`;
 
   useEffect(() => {
     dispatch(fetchGenerationList());
@@ -55,41 +59,28 @@ export function SubHeader() {
       <ContentContainer>
         <SelectContainer>
           <Select
-            value={searchBy.generation}
-            onChange={setPokemonsGeneration}
-          >
-            <option value="">Generations</option>
-            {generations.map(({ name }, i) => (
-              <SelectOption
-                key={name}
-                value={name}
-              >
-                {`${i + 1}º Generation`}
-              </SelectOption>
-            ))}
-          </Select>
+            label="GENERATIONS"
+            options={generations.map(({ name }) => name)}
+            optionSelected={searchBy.generation}
+            templateOption={generationTemplate}
+            onClick={setPokemonsGeneration}
+          />
           <Select
-            value={searchBy.type}
-            onChange={setPokemonsType}
-          >
-            <option value="">Types</option>
-            {types.map(
-              ({ name }) =>
-                name !== 'unknown' && (
-                  <SelectOption
-                    key={name}
-                    value={name}
-                  >
-                    {capitalizeString(name)}
-                  </SelectOption>
-                )
-            )}
-          </Select>
+            label="TYPES"
+            options={types.map(({ name }) => name)}
+            optionSelected={searchBy.type}
+            templateOption={typeTemplate}
+            onClick={setPokemonsType}
+          />
         </SelectContainer>
 
         <LinksContainer>
-          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">BAG</span>
-          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">PC</span>
+          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">
+            BAG
+          </span>
+          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">
+            PC
+          </span>
           <Link to="/favorites" className="font-bold text-gray-200 lg:text-sm">
             FAVORITES
           </Link>

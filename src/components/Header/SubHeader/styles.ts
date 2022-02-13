@@ -25,33 +25,6 @@ export const SelectContainer = tw.div`
   gap-x-4
 `;
 
-export const Select = tw.select`
-  h-10
-
-  mb-4
-
-  justify-items-stretch
-
-  font-bold
-  text-lg
-  text-gray-200
-
-  rounded
-
-  bg-red-700
-
-  lg:h-5
-  lg:text-sm
-  lg:my-auto
-`;
-
-export const SelectOption = tw.option`
-  font-bold
-  text-red-700
-
-  bg-gray-200
-`;
-
 export const LinksContainer = tw.div`
   flex
   justify-between
