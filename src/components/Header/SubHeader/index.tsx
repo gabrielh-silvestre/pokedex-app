@@ -75,10 +75,10 @@ export function SubHeader() {
         </SelectContainer>
 
         <LinksContainer>
-          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">
+          <span className="cursor-not-allowed font-bold text-gray-200 opacity-60 lg:text-sm">
             BAG
           </span>
-          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">
+          <span className="cursor-not-allowed font-bold text-gray-200 opacity-60 lg:text-sm">
             PC
           </span>
           <Link to="/favorites" className="font-bold text-gray-200 lg:text-sm">
