@@ -6,7 +6,6 @@ import {
   fetchGenerationList,
   fetchTypesList,
   resetSearchOption,
-  selectSearchOption,
 } from '../../../redux/actions/searchOptionsActions';
 import {
   getPokemonsByGeneration,
@@ -28,25 +27,18 @@ export function SubHeader() {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const { generations, types, searchBy } = useSelector(
+  const { generations, types } = useSelector(
     (state: RootState) => state.searchOptions
   );
 
   const setPokemonsGeneration = (generationName: string) => {
     dispatch(getPokemonsByGeneration(generationName));
-    dispatch(
-      selectSearchOption({
-        searchBy: 'generation',
-        searchOption: generationName,
-      })
-    );
 
     history.push(`/searchBy/${generationName}`);
   };
 
   const setPokemonsType = (typeName: string) => {
     dispatch(getPokemonsByType(typeName));
-    dispatch(selectSearchOption({ searchBy: 'type', searchOption: typeName }));
 
     history.push(`/searchBy/${typeName}`);
   };
@@ -72,14 +64,12 @@ export function SubHeader() {
           <Select
             label="GENERATIONS"
             options={generations.map(({ name }) => name)}
-            optionSelected={searchBy.generation}
             templateOption={generationTemplate}
             onClick={setPokemonsGeneration}
           />
           <Select
             label="TYPES"
             options={types.map(({ name }) => name)}
-            optionSelected={searchBy.type}
             templateOption={typeTemplate}
             onClick={setPokemonsType}
           />
