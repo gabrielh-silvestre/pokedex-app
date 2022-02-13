@@ -14,6 +14,15 @@ import {
 import { RootState } from '../../../redux/store';
 import { capitalizeString } from '../../../services';
 
+import {
+  Container,
+  ContentContainer,
+  SelectContainer,
+  Select,
+  SelectOption,
+  LinksContainer,
+} from './styles';
+
 export function SubHeader() {
   const dispatch = useDispatch();
   const { generations, types, searchBy } = useSelector(
@@ -42,27 +51,50 @@ export function SubHeader() {
   }, [dispatch]);
 
   return (
-    <nav>
-      <select value={searchBy.generation} onChange={setPokemonsGeneration}>
-      <option value="">Generations</option>
-        {generations.map(({ name }, i) => (
-          <option key={name} value={name}>{`${i + 1}º Generation`}</option>
-        ))}
-      </select>
-      <select value={searchBy.type} onChange={setPokemonsType}>
-        <option value="">Types</option>
-        {types.map(
-          ({ name }) =>
-            name !== 'unknown' && (
-              <option key={name} value={name}>
-                {capitalizeString(name)}
-              </option>
-            )
-        )}
-      </select>
-      <Link to="/favorites">Favorites</Link>
-      <div>Bag</div>
-      <div>PC</div>
-    </nav>
+    <Container>
+      <ContentContainer>
+        <SelectContainer>
+          <Select
+            value={searchBy.generation}
+            onChange={setPokemonsGeneration}
+          >
+            <option value="">Generations</option>
+            {generations.map(({ name }, i) => (
+              <SelectOption
+                key={name}
+                value={name}
+              >
+                {`${i + 1}º Generation`}
+              </SelectOption>
+            ))}
+          </Select>
+          <Select
+            value={searchBy.type}
+            onChange={setPokemonsType}
+          >
+            <option value="">Types</option>
+            {types.map(
+              ({ name }) =>
+                name !== 'unknown' && (
+                  <SelectOption
+                    key={name}
+                    value={name}
+                  >
+                    {capitalizeString(name)}
+                  </SelectOption>
+                )
+            )}
+          </Select>
+        </SelectContainer>
+
+        <LinksContainer>
+          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">BAG</span>
+          <span className="font-bold text-gray-200 opacity-60 lg:text-sm">PC</span>
+          <Link to="/favorites" className="font-bold text-gray-200 lg:text-sm">
+            FAVORITES
+          </Link>
+        </LinksContainer>
+      </ContentContainer>
+    </Container>
   );
 }
