@@ -15,5 +15,9 @@ export const PokemonReducer = createReducer(INITIAL_STATE, (builder) => {
     .addCase(getPokemonsByGeneration.fulfilled, (state, { payload }) => {
       state.pokemonsIds = payload;
       state.fetchNumber = 24;
+    })
+    .addCase(getPokemonsByGeneration.rejected, (state) => {
+      state.pokemonsIds = Array.from({length: 24}, (_, i) => i + 1);
+      state.fetchNumber = 24;
     });
 })
