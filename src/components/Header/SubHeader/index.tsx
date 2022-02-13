@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   fetchGenerationList,
   fetchTypesList,
+  resetSearchOption,
   selectSearchOption,
 } from '../../../redux/actions/searchOptionsActions';
 import {
@@ -52,6 +53,10 @@ export function SubHeader() {
   useEffect(() => {
     dispatch(fetchGenerationList());
     dispatch(fetchTypesList());
+
+    return () => {
+      dispatch(resetSearchOption());
+    }
   }, [dispatch]);
 
   return (
