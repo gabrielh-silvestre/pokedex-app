@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -13,6 +13,7 @@ import {
   getPokemonsByType,
 } from '../../../redux/actions/pokemonActions';
 import { RootState } from '../../../redux/store';
+import { capitalizeString } from '../../../services';
 
 import { Select } from '../../Select';
 
@@ -22,7 +23,6 @@ import {
   SelectContainer,
   LinksContainer,
 } from './styles';
-import { capitalizeString } from '../../../services';
 
 export function SubHeader() {
   const dispatch = useDispatch();
