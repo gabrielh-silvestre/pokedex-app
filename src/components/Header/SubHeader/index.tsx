@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   fetchGenerationList,
   fetchTypesList,
+  selectSearchOption,
 } from '../../../redux/actions/searchOptionsActions';
 import {
   getPokemonsByGeneration,
@@ -15,7 +16,7 @@ import { capitalizeString } from '../../../services';
 
 export function SubHeader() {
   const dispatch = useDispatch();
-  const { generations, types } = useSelector(
+  const { generations, types, searchBy } = useSelector(
     (state: RootState) => state.searchOptions
   );
 
@@ -23,12 +24,16 @@ export function SubHeader() {
     target: { value },
   }: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(getPokemonsByGeneration(value));
+    dispatch(
+      selectSearchOption({ searchBy: 'generation', searchOption: value })
+    );
   };
 
   const setPokemonsType = ({
     target: { value },
   }: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(getPokemonsByType(value));
+    dispatch(selectSearchOption({ searchBy: 'type', searchOption: value }));
   };
 
   useEffect(() => {
@@ -38,16 +43,20 @@ export function SubHeader() {
 
   return (
     <nav>
-      <select onChange={setPokemonsGeneration}>
+      <select value={searchBy.generation} onChange={setPokemonsGeneration}>
+      <option value="">Generations</option>
         {generations.map(({ name }, i) => (
-          <option value={name}>{`${i + 1}º Generation`}</option>
+          <option key={name} value={name}>{`${i + 1}º Generation`}</option>
         ))}
       </select>
-      <select onChange={setPokemonsType}>
+      <select value={searchBy.type} onChange={setPokemonsType}>
+        <option value="">Types</option>
         {types.map(
           ({ name }) =>
             name !== 'unknown' && (
-              <option value={name}>{capitalizeString(name)}</option>
+              <option key={name} value={name}>
+                {capitalizeString(name)}
+              </option>
             )
         )}
       </select>
