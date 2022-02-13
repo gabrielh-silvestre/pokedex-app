@@ -8,8 +8,6 @@ import { fetchPokemon } from '../../../services/api';
 import { PokemonTypes } from '../../PokemonTypes';
 import { FavoriteButton } from '../../Buttons/FavoriteButton';
 
-import LoadSpinner from '../../LoadSpinner/LoadSpinner';
-
 import {
   Container,
   ImageContainer,
@@ -29,6 +27,9 @@ export function MainCard({ pokemonId }: MainCardProps) {
   const getPokemonById = useCallback(async () => {
     if (typeof pokemonId === 'number') {
       const pokemonData = await fetchPokemon.getPokemonById(pokemonId);
+      setPokemon(pokemonData);
+    } else {
+      const pokemonData = await fetchPokemon.getPokemonByName(pokemonId);
       setPokemon(pokemonData);
     }
   }, [pokemonId]);
@@ -68,6 +69,6 @@ export function MainCard({ pokemonId }: MainCardProps) {
       </ContentContainer>
     </Container>
   ) : (
-    <LoadSpinner />
+    <div />
   );
 }
