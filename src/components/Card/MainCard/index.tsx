@@ -42,7 +42,7 @@ export function MainCard({ pokemonId }: MainCardProps) {
     <Container>
       <FavoriteButton
         pokemon={pokemon}
-        className="w-12 h-12 absolute top-0 right-0"
+        className="w-12 h-12 absolute top-0 right-0 lg:w-9 lg:h-9"
       />
       <Link to={`/pokemon/${pokemon.id}`} className="w-full">
         <ImageContainer>
