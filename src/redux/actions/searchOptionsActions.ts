@@ -26,3 +26,5 @@ export const fetchTypesList = createAsyncThunk(
 export const selectSearchOption = createAction<searchOptionPayload>(
   'search/setSearchOption'
 );
+
+export const resetSearchOption = createAction('search/resetSearchOption');

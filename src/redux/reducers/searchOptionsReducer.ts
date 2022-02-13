@@ -4,6 +4,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 import {
   fetchGenerationList,
   fetchTypesList,
+  resetSearchOption,
   selectSearchOption,
 } from '../actions/searchOptionsActions';
 
@@ -27,5 +28,8 @@ export const SearchOptionsReducer = createReducer(INITIAL_STATE, (builder) => {
     .addCase(selectSearchOption, (state, { payload }) => {
       state.searchBy = { type: '', generation: '' };
       state.searchBy[payload.searchBy] = payload.searchOption;
+    })
+    .addCase(resetSearchOption, (state) => {
+      state.searchBy = { type: '', generation: '' };
     });
 });
