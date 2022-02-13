@@ -35,7 +35,7 @@ export function Pokedex() {
             <b>Yay! You have seen it all</b>
           </p>
         }
-        className="container z-0 hidden-scroll sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
+        className="container z-0 scroll-hidden sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
       >
         {pokemonsIds.length > 0 &&
           pokemonsIds.map((pokemonId) => (
