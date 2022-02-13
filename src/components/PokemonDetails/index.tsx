@@ -16,6 +16,7 @@ import {
   ForcesSection,
   StatsSection,
 } from './styles';
+import { FavoriteButton } from '../Buttons/FavoriteButton';
 
 type PokemonDetailsProps = {
   pokemon: Pokemon;
@@ -46,6 +47,10 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
         </ContainerTitle>
 
         <ContainerImage>
+          <FavoriteButton
+            pokemon={pokemon}
+            className="w-10 h-10 absolute top-0 right-0 lg:w-16 lg:h-16"
+          />
           <img
             className="w-8/12 sm:w-2/4"
             src={other['official-artwork'].front_default as string}
