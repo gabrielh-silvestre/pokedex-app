@@ -41,6 +41,8 @@ export const ContainerImage = tw.section`
 
   my-4
 
+  relative
+
   flex
   justify-center
   items-center

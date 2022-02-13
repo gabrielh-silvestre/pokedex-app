@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pokemon } from 'pokenode-ts';
 
-import { fetchPokemon } from '../../services';
+import { fetchPokemon } from '../../services/api';
 
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
 import { PokemonDetails } from '../../components/PokemonDetails';

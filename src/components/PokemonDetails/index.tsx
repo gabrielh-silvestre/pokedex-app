@@ -16,6 +16,7 @@ import {
   ForcesSection,
   StatsSection,
 } from './styles';
+import { FavoriteButton } from '../Buttons/FavoriteButton';
 
 type PokemonDetailsProps = {
   pokemon: Pokemon;
@@ -23,7 +24,6 @@ type PokemonDetailsProps = {
 
 export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   const {
-    id,
     name,
     abilities,
     types,
@@ -39,7 +39,6 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
     <Container>
       <Arrows
         arrow="left"
-        actualPokemon={id}
         className="flex items-center row-start-3"
       />
       <ContentContainer>
@@ -48,6 +47,10 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
         </ContainerTitle>
 
         <ContainerImage>
+          <FavoriteButton
+            pokemon={pokemon}
+            className="w-10 h-10 absolute top-0 right-0 lg:w-16 lg:h-16"
+          />
           <img
             className="w-8/12 sm:w-2/4"
             src={other['official-artwork'].front_default as string}
@@ -73,7 +76,6 @@ export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
       </ContentContainer>
       <Arrows
         arrow="right"
-        actualPokemon={id}
         className="flex items-center justify-end row-start-3"
       />
     </Container>

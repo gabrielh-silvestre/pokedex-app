@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../../redux/store';
 
-import { PokemonCard } from '../../components/PokemonCard';
+import { FavoriteCard } from '../../components/Card/FavoriteCard';
 
 import { Container, FavoriteAlert } from './styles';
 
@@ -13,7 +13,7 @@ export function Favorites() {
     <Container $hasFavorite={favorites.length > 0}>
       {favorites.length > 0 ? (
         favorites.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          <FavoriteCard key={pokemon.id} pokemon={ pokemon } />
         ))
       ) : (
         <FavoriteAlert>

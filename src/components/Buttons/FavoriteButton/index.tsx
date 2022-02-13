@@ -22,24 +22,22 @@ export function FavoriteButton({ pokemon, className }: FavoriteButtonProps) {
   return isFavorite ? (
     <button
       type="button"
+      className={`text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
       onClick={() => {
         dispatch(removeFromFavorite(pokemon));
       }}
     >
-      <HiHeart
-        className={`w-8 h-8 text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
-      />
+      <HiHeart className="w-full h-full" />
     </button>
   ) : (
     <button
       type="button"
+      className={`text-red-600 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
       onClick={() => {
         dispatch(addItemToFavorite(pokemon));
       }}
     >
-      <HiOutlineHeart
-        className={`w-8 h-8 text-red-600 opacity-50 transition duration-300 ease-in-out transform hover:scale-125 ${className}`}
-      />
+      <HiOutlineHeart className="w-full h-full" />
     </button>
   );
 }

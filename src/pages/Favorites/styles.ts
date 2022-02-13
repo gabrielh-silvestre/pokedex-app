@@ -3,15 +3,12 @@ import tw from 'tailwind-styled-components';
 export const Container = tw.main<{ $hasFavorite: boolean }>`
   ${({ $hasFavorite }) => $hasFavorite ?'h-auto' : 'h-full'}
   container
-  relative
 
   md:grid
   md:grid-cols-2
   md:gap-x-8
 
-  lg:grid-cols-3
-
-  2xl:grid-cols-4
+  2xl:grid-cols-3
 `;
 
 export const FavoriteAlert = tw.div`
