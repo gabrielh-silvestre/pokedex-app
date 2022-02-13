@@ -1,46 +1,33 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import LeftArrow from '../icons/LeftArrow';
-import RightArrow from '../icons/RightArrow';
+import { Link, useParams } from 'react-router-dom';
+
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 interface ArrowsProps {
-  actualPokemon: number;
   arrow: 'right' | 'left';
   className: string;
 }
 
-export function Arrows({ actualPokemon, arrow, className }: ArrowsProps) {
-  const [next, setNext] = useState(0);
-  const [previous, setPrevious] = useState(0);
+type PokemonParams = {
+  pokemonId: string;
+};
 
-  const setNextPokemon = useCallback(() => {
-    if (actualPokemon < 898) {
-      setNext(actualPokemon + 1);
-    } else {
-      setNext(actualPokemon);
-    }
-  }, [actualPokemon]);
-
-  const setPrevPokemon = useCallback(() => {
-    if (actualPokemon > 1) {
-      setPrevious(actualPokemon - 1);
-    } else {
-      setPrevious(actualPokemon);
-    }
-  }, [actualPokemon]);
-
-  useEffect(() => {
-    setNextPokemon();
-    setPrevPokemon();
-  }, [setNextPokemon, setPrevPokemon]);
+export function Arrows({ arrow, className }: ArrowsProps) {
+  const { pokemonId } = useParams<PokemonParams>();
+  const currId = Number(pokemonId);
 
   return arrow === 'right' ? (
-    <Link className={className} to={`/pokemon/${next}`}>
-      <RightArrow />
+    <Link
+      className={className}
+      to={currId < 898 ? `/pokemon/${currId + 1}` : `/pokemon/${currId}`}
+    >
+      <HiChevronRight />
     </Link>
   ) : (
-    <Link className={className} to={`/pokemon/${previous}`}>
-      <LeftArrow />
+    <Link
+      className={className}
+      to={currId > 1 ? `/pokemon/${currId - 1}` : `/pokemon/${currId}`}
+    >
+      <HiChevronLeft />
     </Link>
   );
 }
