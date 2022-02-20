@@ -6,13 +6,15 @@ import { StaticList } from './pages/StaticList';
 import { PokemonSinglePage } from './pages/PokemonSinglePage';
 import { Favorites } from './pages/Favorites';
 import { Header } from './components/Header/MainHeader';
+import { NotFound } from './pages/NotFound';
 
 function App() {
   return (
-    <div className="h-screen">
+    <div className="h-screen relative">
       <Header />
 
       <Switch>
+        <Route exact path="/pokemon/not-found" component={ NotFound } />
         <Route
           path="/pokemon/:pokemonId"
           component={ PokemonSinglePage }

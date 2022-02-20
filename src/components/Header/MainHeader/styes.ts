@@ -19,6 +19,7 @@ export const ContentContainer = tw.div`
   justify-between
 
   lg:grid
+  lg:grid-cols-3
 
   xl:mx-auto
 `;

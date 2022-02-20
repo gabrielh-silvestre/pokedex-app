@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Pokemon } from 'pokenode-ts';
 
 import { fetchPokemon } from '../../services/api';
@@ -14,18 +14,26 @@ type SinglePokemonParams = {
 export function PokemonSinglePage() {
   const [loading, setLoading] = useState(true);
   const [pokemon, setPokemon] = useState<Pokemon>({} as Pokemon);
+
   const { pokemonId } = useParams<SinglePokemonParams>();
+  const history = useHistory();
 
   const getPokemon = useCallback(async () => {
     setLoading(true);
 
-    const newPokemon = await fetchPokemon.getPokemonById(
-      Number.parseInt(pokemonId, 10)
-    );
-    setPokemon(newPokemon);
+    try {
+      const newPokemon = Number(pokemonId)
+        ? await fetchPokemon.getPokemonById(Number(pokemonId))
+        : await fetchPokemon.getPokemonByName(pokemonId.toLowerCase());
+
+      setPokemon(newPokemon);
+    } catch(err) {
+      console.log(err);
+      history.push('/pokemon/not-found');
+    }
 
     setLoading(false);
-  }, [pokemonId]);
+  }, [history, pokemonId]);
 
   useEffect(() => {
     getPokemon();

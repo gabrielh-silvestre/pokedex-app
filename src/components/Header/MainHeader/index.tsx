@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Turn as Hamburger } from 'hamburger-react';
 
-// import { SearchBar } from '../../SearchBar';
+import { SearchBar } from '../../SearchBar';
 
 import {
   HeaderContainer,
   ContentContainer,
   HeaderTitle,
   NavBar,
-  LinkList,
-  LinkItem,
-  // SearchContainer,
+  // LinkList,
+  // LinkItem,
+  SearchContainer,
 } from './styes';
 
 export function Header() {
@@ -33,7 +33,7 @@ export function Header() {
         <NavBar
           $isVisible={mobileMenu}
         >
-          <LinkList>
+          {/* <LinkList>
             <LinkItem $first>
               <a
                 href="https://www.pokemon.com/br/pokedex/"
@@ -61,11 +61,11 @@ export function Header() {
                 Linkedin
               </a>
             </LinkItem>
-          </LinkList>
+          </LinkList> */}
         </NavBar>
-        {/* <SearchContainer $isVisible={mobileMenu} style={{ width: '183px' }}>
+        <SearchContainer $isVisible={mobileMenu}>
           <SearchBar />
-        </SearchContainer> */}
+        </SearchContainer>
       </ContentContainer>
     </HeaderContainer>
   );
