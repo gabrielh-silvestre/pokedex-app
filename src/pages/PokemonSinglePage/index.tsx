@@ -19,9 +19,10 @@ export function PokemonSinglePage() {
   const getPokemon = useCallback(async () => {
     setLoading(true);
 
-    const newPokemon = await fetchPokemon.getPokemonById(
-      Number.parseInt(pokemonId, 10)
-    );
+    const newPokemon = Number(pokemonId)
+      ? await fetchPokemon.getPokemonById(Number(pokemonId))
+      : await fetchPokemon.getPokemonByName(pokemonId.toLowerCase());
+
     setPokemon(newPokemon);
 
     setLoading(false);
