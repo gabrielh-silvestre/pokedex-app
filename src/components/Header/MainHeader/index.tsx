@@ -9,8 +9,8 @@ import {
   ContentContainer,
   HeaderTitle,
   NavBar,
-  LinkList,
-  LinkItem,
+  // LinkList,
+  // LinkItem,
   SearchContainer,
 } from './styes';
 
@@ -33,7 +33,7 @@ export function Header() {
         <NavBar
           $isVisible={mobileMenu}
         >
-          <LinkList>
+          {/* <LinkList>
             <LinkItem $first>
               <a
                 href="https://www.pokemon.com/br/pokedex/"
@@ -61,7 +61,7 @@ export function Header() {
                 Linkedin
               </a>
             </LinkItem>
-          </LinkList>
+          </LinkList> */}
         </NavBar>
         <SearchContainer $isVisible={mobileMenu}>
           <SearchBar />
