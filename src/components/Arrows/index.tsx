@@ -1,20 +1,14 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 interface ArrowsProps {
   arrow: 'right' | 'left';
+  currId: number;
   className: string;
 }
 
-type PokemonParams = {
-  pokemonId: string;
-};
-
-export function Arrows({ arrow, className }: ArrowsProps) {
-  const { pokemonId } = useParams<PokemonParams>();
-  const currId = Number(pokemonId);
-
+export function Arrows({ arrow, currId, className }: ArrowsProps) {
   return arrow === 'right' ? (
     <Link
       className={className}
